@@ -17,9 +17,9 @@ function createItem(elemento) {
     if (elemento.immagine && elemento.immagine.startsWith('http')) {
         img.src = elemento.immagine;
     } else if (elemento.immagine) {
-        img.src = '../assets/img/' + elemento.immagine;
+        img.src = '/hw2/laravel_app/public/img/' + elemento.immagine;
     } else {
-        img.src = '../assets/img/default.png';
+        img.src = '/hw2/laravel_app/public/img/default.png';
     }
     panelItem.appendChild(img);
 
@@ -40,28 +40,28 @@ function createItem(elemento) {
     const opzionali = document.createElement('div');
     opzionali.classList.add('opzionali');
 
-    if (elemento.bestseller=="1") {
+    if (elemento.bestseller == 1 || elemento.bestseller === "1") {
         const bestseller = document.createElement('div');
         bestseller.classList.add('bestseller');
         bestseller.textContent = 'Best seller';
         opzionali.appendChild(bestseller);
     }
-    if (elemento.burger =="1") {
+    if (elemento.burger == 1 || elemento.burger === "1") {
         const burgerIcon = document.createElement('img');
         burgerIcon.classList.add('burger', 'icon');
-        burgerIcon.src = '../assets/img/burger.svg';
+        burgerIcon.src = '/hw2/laravel_app/public/img/burger.svg';
         opzionali.appendChild(burgerIcon);
     }
-    if (elemento.chips == "1") {
+    if (elemento.chips == 1 || elemento.chips === "1") {
         const chipsIcon = document.createElement('img');
         chipsIcon.classList.add('chips', 'icon');
-        chipsIcon.src = '../assets/img/chips.svg';
+        chipsIcon.src = '/hw2/laravel_app/public/img/chips.svg';
         opzionali.appendChild(chipsIcon);
     }
-    if (elemento.drink == "1") {
+    if (elemento.drink == 1 || elemento.drink === "1") {
         const drinkIcon = document.createElement('img');
         drinkIcon.classList.add('drink', 'icon');
-        drinkIcon.src = '../assets/img/drink.svg';
+        drinkIcon.src = '/hw2/laravel_app/public/img/drink.svg';
         opzionali.appendChild(drinkIcon);
     }
 

@@ -1,5 +1,5 @@
 const panelBody = document.querySelector('#panel-body');
-fetch('../php/get_categorie.php')
+fetch('http://localhost/hw2/laravel_app/public/categorie')
     .then(response => response.json())
     .then(data => {
         for (const elemento of data) {
@@ -8,5 +8,5 @@ fetch('../php/get_categorie.php')
         }
     })
     .catch(error => {
-        panelBody.innerHTML = '<p>Errore nel caricamento delle categorie.</p>';
+        panelBody.textContent = 'Errore nel caricamento delle categorie';
     });

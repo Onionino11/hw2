@@ -3,7 +3,7 @@
 <head>
     @include('header')
     <title>@yield('title', 'Maluburger')</title>
-    @yieled('scripts')
+    @yield('scripts')
 </head>
 <body>
     <div id="modal-view" class="hidden"></div>

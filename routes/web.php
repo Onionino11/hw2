@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use App\Http\Controllers\TestController;
+use App\Http\Controllers\CategoriaController;
 
 Route::get('/', function () {
     return view('index');
@@ -37,3 +38,4 @@ Route::post('/test', function (Request $request) {
 Route::get('/prova', [TestController::class, 'test'] );
 Route::get('/array', [TestController::class, 'array'] );
 Route::get('/pro',function(){return redirect('/prova');});
+Route::get('/categorie', [CategoriaController::class, 'loadCategorie'] );
