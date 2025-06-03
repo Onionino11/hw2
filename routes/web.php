@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\TestController;
 use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\OrariController;
+use App\Http\Controllers\AuthCookieController;
 
 Route::get('/', function () {
     return view('index');
@@ -41,3 +42,6 @@ Route::get('/array', [TestController::class, 'array'] );
 Route::get('/pro',function(){return redirect('/prova');});
 Route::get('/categorie', [CategoriaController::class, 'loadCategorie'] );
 Route::get('/orari', [OrariController::class, 'getOrari'] );
+
+Route::post('/login-cookie', [AuthCookieController::class, 'login']);
+Route::get('/logout-cookie', [AuthCookieController::class, 'logout']);

@@ -22,12 +22,13 @@
             </strong>
         </p>
         @if($loggato)
-            <form action="{{ url('logout_cookie') }}" method="get" class="form" id="nav-form">
+            <form action="{{ url('logout-cookie') }}" method="get" class="form" id="nav-form">
                 <input type="hidden" name="logout" value="1">
                 <input type="submit" value="Logout" class="submit">
             </form>
         @else
-            <form action="{{ url('login_cookie') }}" method="get" class="form" id="nav-form">
+            <form action="{{ url('login-cookie') }}" method="post" class="form" id="nav-form">
+                @csrf
                 <input class="nav-input" type="text" placeholder="Email" name="email">
                 <input class="nav-input" type="password" placeholder="Password" name="password">
                 @if(request('err') == 1)

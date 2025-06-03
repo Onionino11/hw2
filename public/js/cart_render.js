@@ -1,5 +1,3 @@
-// assets/js/cart_render.js
-// Popola il carrello dinamicamente usando i dati ricevuti dal backend (es. da api_cart.php)
 function renderCart(cartData) {
     const cartCollection = document.getElementById('cart-collection');
     cartCollection.innerHTML = '';
