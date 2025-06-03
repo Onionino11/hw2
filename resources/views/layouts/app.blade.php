@@ -3,7 +3,7 @@
 <head>
     @include('header')
     <title>@yield('title', 'Maluburger')</title>
-    <!-- <script src="{{ asset('js/index.js') }}" defer></script> -->
+    @yieled('scripts')
 </head>
 <body>
     <div id="modal-view" class="hidden"></div>
@@ -15,11 +15,11 @@
             <div id="panel-heading">
                 <img class="panel-icon icon" src="{{ asset('img/tag.png') }}"> Menu @yield('title')
             </div>
-            <div id="panel-body"></div>
+            <div id="panel-body"> @yield('content') </div>
         </section>
         @include('cart')
     </article>
-    @yield('content')
+   
     @include('footer')
 </body>
 </html>

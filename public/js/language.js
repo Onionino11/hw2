@@ -33,11 +33,11 @@ function setLinguaAttuale() {
     if (linguaAttuale === 'Italiano') {
         let linguaAttiva = menu.querySelector('#Italiano');
         linguaAttiva.classList.add('linguaattuale');
-        languageSelector.querySelector('img').src = '../assets/img/Flag_of_Italy.svg';
+        languageSelector.querySelector('img').src = 'img/Flag_of_Italy.svg';
     } else if (linguaAttuale === 'English') {
         let linguaAttiva = menu.querySelector('#English');
         linguaAttiva.classList.add('linguaattuale');
-        languageSelector.querySelector('img').src = '../assets/img/Flag_of_the_United_Kingdom.svg';
+        languageSelector.querySelector('img').src = 'img/Flag_of_the_United_Kingdom.svg';
     }
 }
 setLinguaAttuale();
