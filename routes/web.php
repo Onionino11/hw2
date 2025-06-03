@@ -1,0 +1,39 @@
+<?php
+
+use Illuminate\Support\Facades\Route;
+use Illuminate\Http\Request;
+use App\Http\Controllers\TestController;
+
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+Route::get('/test/{param1?}/{param2?}', function ($a='Prova a passare un parametro', $b='e un secondo parametro') {
+    echo "<h1>This is a test route!</h1>";
+    echo "<p>Laravel is working correctly.</p>";
+    echo "<form method='POST'>
+        <input type='hidden' name='_token' value='" . csrf_token() . "'>
+        <button type='submit'>Submit</button>
+    </form>";
+    echo "<p>Parameters received: <br>
+        - 1) $a <br>
+        - 2) $b</p>";
+    echo "<h4>Ricorda per rendere opzionale un parametro devi usare questa sintassi</h4>";
+    echo "<p>Route::get('/test/{param1?}', function (\$a='Prova a passare un parametro') { codice... });</p>";
+    echo "<h4>Per passare un parametro obbligatorio devi usare questa sintassi</h4>";
+    echo "<p>Route::get('/test/{param1}', function (\$a) { codice... });</p>";
+});
+
+Route::post('/test', function (Request $request) {
+    echo "<h1>Form submitted successfully!</h1>";
+    echo "<p>-    Tutte le richieste POST nelle route in web.php devono contenere un campo chiamato _token <br>
+        -    Il valore è fornito da Laravel (varia ad ogni richiesta) <br>
+        -    Evita attacchi di tipo cross-site request forgery</p>";
+    echo "Token: ";
+    print_r($request->_token);
+    echo "<br><a href='http://localhost/hw2/laravel_app/public/test'>LE FUNZIONI GET E POST SONO DIVERSE</a>";
+});
+
+Route::get('/prova', [TestController::class, 'test'] );
+Route::get('/array', [TestController::class, 'array'] );
+Route::get('/pro',function(){return redirect('/prova');});
