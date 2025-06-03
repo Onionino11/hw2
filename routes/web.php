@@ -4,9 +4,9 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use App\Http\Controllers\TestController;
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
+Route::get('/', function () {
+    return view('index');
+});
 
 Route::get('/test/{param1?}/{param2?}', function ($a='Prova a passare un parametro', $b='e un secondo parametro') {
     echo "<h1>This is a test route!</h1>";
