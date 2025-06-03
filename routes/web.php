@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use App\Http\Controllers\TestController;
 use App\Http\Controllers\CategoriaController;
+use App\Http\Controllers\OrariController;
 
 Route::get('/', function () {
     return view('index');
@@ -39,3 +40,4 @@ Route::get('/prova', [TestController::class, 'test'] );
 Route::get('/array', [TestController::class, 'array'] );
 Route::get('/pro',function(){return redirect('/prova');});
 Route::get('/categorie', [CategoriaController::class, 'loadCategorie'] );
+Route::get('/orari', [OrariController::class, 'getOrari'] );

@@ -1,11 +1,10 @@
 function orariGiornalieri() {
-    fetch('../php/orari.php')
+    fetch('http://localhost/hw2/laravel_app/public/orari')
         .then(onSuccess, onError)
         .then(onJsonOrariGiornalieri);
 }
 
 function onJsonOrariGiornalieri(data) {
-    console.log('Risultato della fetch:', data);
     if (data.elements.length > 0) {
         const place = data.elements[0];
         const openingHours = place.tags.opening_hours; 
@@ -22,7 +21,6 @@ function onJsonOrariGiornalieri(data) {
                 orarioOggi = orario.orario;
             }
         }
-        console.log('Orari di apertura per oggi:',giornoCorrente, orarioOggi);
         const orario = document.querySelector('#orario');
         orario.textContent = orarioOggi;
         const telefono = document.querySelector('#telefono');

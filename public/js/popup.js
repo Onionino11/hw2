@@ -11,7 +11,7 @@ function showPopup() {
     const closeButton = document.createElement('button');
     closeButton.classList.add('close-button');
     const closeIcon = document.createElement('img');
-    closeIcon.src = '../assets/img/xbianca.svg';
+    closeIcon.src = 'img/xbianca.svg';
     closeIcon.classList.add('close-icon');
     closeButton.appendChild(closeIcon);
     closeButton.addEventListener('click', removePopup);

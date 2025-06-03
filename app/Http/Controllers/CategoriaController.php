@@ -11,4 +11,9 @@ class CategoriaController extends Controller
         $categorie = DB::table('categoria')->get();
         return response()->json($categorie);
     }
+
+    public function loadOrari()
+    {
+        
+    }
 }
