@@ -22,6 +22,14 @@
             </strong>
         </p>
         @if($loggato)
+            @php
+                $user = \DB::table('users')->find($loggato);
+            @endphp
+            @if($user)
+                <span class="nav-username">
+                    {{ $user->first_name }} {{ $user->last_name }}
+                </span>
+            @endif
             <form action="{{ url('logout-cookie') }}" method="get" class="form" id="nav-form">
                 <input type="hidden" name="logout" value="1">
                 <input type="submit" value="Logout" class="submit">

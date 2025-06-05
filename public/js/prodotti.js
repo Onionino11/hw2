@@ -17,9 +17,9 @@ function createItem(elemento) {
     if (elemento.immagine && elemento.immagine.startsWith('http')) {
         img.src = elemento.immagine;
     } else if (elemento.immagine) {
-        img.src = '/hw2/laravel_app/public/img/' + elemento.immagine;
+        img.src = 'http://localhost/hw2/laravel_app/public/img/' + elemento.immagine;
     } else {
-        img.src = '/hw2/laravel_app/public/img/default.png';
+        img.src = 'http://localhost/hw2/laravel_app/public/img/default.png';
     }
     panelItem.appendChild(img);
 
@@ -49,19 +49,19 @@ function createItem(elemento) {
     if (elemento.burger == 1 || elemento.burger === "1") {
         const burgerIcon = document.createElement('img');
         burgerIcon.classList.add('burger', 'icon');
-        burgerIcon.src = '/hw2/laravel_app/public/img/burger.svg';
+        burgerIcon.src = 'http://localhost/hw2/laravel_app/public/img/burger.svg';
         opzionali.appendChild(burgerIcon);
     }
     if (elemento.chips == 1 || elemento.chips === "1") {
         const chipsIcon = document.createElement('img');
         chipsIcon.classList.add('chips', 'icon');
-        chipsIcon.src = '/hw2/laravel_app/public/img/chips.svg';
+        chipsIcon.src = 'http://localhost/hw2/laravel_app/public/img/chips.svg';
         opzionali.appendChild(chipsIcon);
     }
     if (elemento.drink == 1 || elemento.drink === "1") {
         const drinkIcon = document.createElement('img');
         drinkIcon.classList.add('drink', 'icon');
-        drinkIcon.src = '/hw2/laravel_app/public/img/drink.svg';
+        drinkIcon.src = 'http://localhost/hw2/laravel_app/public/img/drink.svg';
         opzionali.appendChild(drinkIcon);
     }
 
@@ -89,36 +89,43 @@ function createItem(elemento) {
         square.textContent = '>';
         itemButton.appendChild(square);
     } else {
-        prodottiLink.href = '../php/add_to_cart.php?id=' + encodeURIComponent(elemento.prodotto) +
-            '&nome=' + encodeURIComponent(elemento.nome) +
-            '&descrizione=' + encodeURIComponent(elemento.descrizione) +
-            '&prezzo=' + encodeURIComponent(elemento.prezzo);
+        // Nuovo: usa le route Laravel per aggiungere al carrello
+        prodottiLink.href = 'http://localhost/hw2/laravel_app/public/add-to-cart?id=' + encodeURIComponent(elemento.prodotto) + '&nome=' + encodeURIComponent(elemento.nome) + '&descrizione=' + encodeURIComponent(elemento.descrizione) + '&prezzo=' + encodeURIComponent(elemento.prezzo);
         prodottiText.classList.add('N-Prodotti');
         prodottiText.textContent = elemento.prezzo + '€';
         prodottiLink.appendChild(prodottiText);
         const addLink = document.createElement('a');
         addLink.classList.add('square');
         addLink.textContent = '+';
-        addLink.href = '../php/add_to_cart.php?id=' + encodeURIComponent(elemento.prodotto) +
-            '&nome=' + encodeURIComponent(elemento.nome) +
-            '&descrizione=' + encodeURIComponent(elemento.descrizione) +
-            '&prezzo=' + encodeURIComponent(elemento.prezzo);
+        addLink.href = 'http://localhost/hw2/laravel_app/public/add-to-cart?id=' + encodeURIComponent(elemento.prodotto) + '&nome=' + encodeURIComponent(elemento.nome) + '&descrizione=' + encodeURIComponent(elemento.descrizione) + '&prezzo=' + encodeURIComponent(elemento.prezzo);
         itemButton.appendChild(addLink);
     }
 
     itemBody.appendChild(itemButton);
     if (elemento.nome === "MALU BURGER (SOLO PANINO)") {
-        itemButton.addEventListener('click', goToHamburger);
+        itemButton.addEventListener('click', function() {
+            window.location.href = 'http://localhost/hw2/laravel_app/public/HAMBURGER';
+        });
     } else if (elemento.nome === "PER INIZIARE") {
-        itemButton.addEventListener('click', goToSnac);
+        itemButton.addEventListener('click', function() {
+            window.location.href = 'http://localhost/hw2/laravel_app/public/PER_INIZIARE';
+        });
     } else if (elemento.nome === "MALU PROMO MENU'") {
-        itemButton.addEventListener('click', goToPasta);
+        itemButton.addEventListener('click', function() {
+            window.location.href = 'http://localhost/hw2/laravel_app/public/PASTA';
+        });
     } else if (elemento.nome === "MALU LIGHT") {
-        itemButton.addEventListener('click', goToSalad);
+        itemButton.addEventListener('click', function() {
+            window.location.href = 'http://localhost/hw2/laravel_app/public/INSALATE';
+        });
     } else if (elemento.nome === "DA BERE") {
-        itemButton.addEventListener('click', goToDrink);
+        itemButton.addEventListener('click', function() {
+            window.location.href = 'http://localhost/hw2/laravel_app/public/BEVANDE';
+        });
     } else if (elemento.nome === "DOLCI") {
-        itemButton.addEventListener('click', goToDessert);
+        itemButton.addEventListener('click', function() {
+            window.location.href = 'http://localhost/hw2/laravel_app/public/DESSERT';
+        });
     }
     panelItem.appendChild(itemBody);
     return panelItem;
@@ -163,7 +170,7 @@ function createDessert(){
 
 function createCibo(query,number) {
     hideItemsCategoria(); 
-    fetch('../php/api_prodotti.php?query=' + encodeURIComponent(query) + '&number=' + number)
+    fetch('http://localhost/hw2/laravel_app/public/api/' + encodeURIComponent(query) + '/' + number)
         .then(onSuccess, onError)
         .then(onJsonItems);
 }
@@ -238,23 +245,4 @@ function hideItemsCategoria() {
 
 function getRandomFloat(min, max) {
     return ((Math.random() * (max - min) + min).toFixed(1)+'0');
-}
-
-function goToHamburger() {
-    window.location.href = '../php/prodotti_view.php?query=hamburger&number=' + getNumberof('MALU BURGER (SOLO PANINO)');
-}
-function goToSnac() {
-    window.location.href = '../php/prodotti_view.php?query=snac&number=' + getNumberof('PER INIZIARE');
-}
-function goToPasta() {
-    window.location.href = '../php/prodotti_view.php?query=pasta&number=' + getNumberof("MALU PROMO MENU'");
-}
-function goToSalad() {
-    window.location.href = '../php/prodotti_view.php?query=salad&number=' + getNumberof('MALU LIGHT');
-}
-function goToDrink() {
-    window.location.href = '../php/prodotti_view.php?query=drink&number=' + getNumberof('DA BERE');
-}
-function goToDessert() {
-    window.location.href = '../php/prodotti_view.php?query=dessert&number=' + getNumberof('DOLCI');
 }

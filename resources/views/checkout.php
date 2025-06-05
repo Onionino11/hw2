@@ -30,7 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_COOKIE['loggato'])) {
             }
             if (count($items) > 0) {
                 $stmt = mysqli_prepare($conn, "INSERT INTO ordini (user_id, totale, note, first_name, last_name, phone, consegna, pagamento) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
-                mysqli_stmt_bind_param($stmt, 'idssssss', $user_id, $totale, $note, $first_name, $last_name, $phone, $consegna, $pagamento);
+                mysqli_stmt_bind_param($stmt, 'id', $user_id, $totale, $note, $first_name, $last_name, $phone, $consegna, $pagamento);
                 if (mysqli_stmt_execute($stmt)) {
                     $ordine_id = mysqli_insert_id($conn);
                     foreach ($items as $item) {

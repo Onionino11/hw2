@@ -6,6 +6,8 @@ use App\Http\Controllers\TestController;
 use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\OrariController;
 use App\Http\Controllers\AuthCookieController;
+use App\Http\Controllers\SingupController;
+use App\Http\Controllers\ProdottiController;
 
 Route::get('/', function () {
     return view('index');
@@ -45,3 +47,28 @@ Route::get('/orari', [OrariController::class, 'getOrari'] );
 
 Route::post('/login-cookie', [AuthCookieController::class, 'login']);
 Route::get('/logout-cookie', [AuthCookieController::class, 'logout']);
+Route::get('/singup', function () {
+    return view('singup');
+});
+Route::post('/singup', [SingupController::class, 'store']);
+Route::get('db/{categoria}/{numero?}', [ProdottiController::class, 'db']);
+Route::get('api/{categoria}/{numero}', [ProdottiController::class, 'api']);
+
+Route::get('/PER_INIZIARE', function() {
+    return view('prodotti_view')->with('categoria', 'snac')->with('title','Per iniziare');
+});
+Route::get('/MALU PROMO MENU', function() {
+    return view('prodotti_view')->with('categoria', 'hamburger')->with('title','MALU PROMO MENU');
+});
+Route::get('/MALU LIGHT', function() {
+    return view('prodotti_view')->with('categoria', 'salad')->with('title','MALU LIGHT');
+});
+Route::get('/MALU BURGER (SOLO PANINO)', function() {
+    return view('prodotti_view')->with('categoria', 'pasta')->with('title','MALU BURGER (SOLO PANINO)');
+});
+Route::get('/BEVANDE', function() {
+    return view('prodotti_view')->with('categoria', 'drink')->with('title','Bevande');
+});
+Route::get('/DOLCI', function() {
+    return view('prodotti_view')->with('categoria', 'dessert')->with('title','DOLCI');
+});

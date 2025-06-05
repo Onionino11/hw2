@@ -9,5 +9,4 @@
 <script src="{{ asset('js/prodotti.js') }}" defer></script>
 <script src="{{ asset('js/orari.js') }}" defer></script>
 <script src="{{ asset('js/validazione.js') }}" defer></script>
-{{-- eventuale alert --}}
-@include('include_alert')
+
