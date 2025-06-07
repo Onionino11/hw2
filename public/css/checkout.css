@@ -100,18 +100,69 @@
 .ordine-success {
     background: #e6ffe6;
     border-radius: 8px;
-    margin-bottom: 20px;
-    padding: 20px;
+    margin: 0 auto 30px auto;
+    padding: 30px;
+    max-width: 600px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .ordine-errore {
     background: #ffe6e6;
     border-radius: 8px;
-    margin-bottom: 20px;
+    margin: 0 auto 30px auto;
     padding: 20px;
+    max-width: 600px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.ordine-success strong {
+    display: block;
+    font-size: 1.4em;
+    margin-bottom: 15px;
+    color: #2e7d32;
+}
+
+.ordine-success ul {
+    list-style: none;
+    padding: 0;
+    margin: 20px 0;
+    text-align: left;
+    border-top: 1px solid #c8e6c9;
+    border-bottom: 1px solid #c8e6c9;
+    padding: 15px 0;
+}
+
+.ordine-success ul li {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    padding: 5px 0;
 }
 
 .ordine-totale {
     text-align: right;
     font-weight: bold;
+    font-size: 1.2em;
+    margin: 20px 0;
+    color: #1b5e20;
+}
+
+.btn-concludi-ordine {
+    background-color: #4CAF50;
+    display: inline-block;
+    padding: 12px 24px;
+    text-decoration: none;
+    color: white;
+    border-radius: 4px;
+    font-weight: bold;
+    font-size: 1em;
+    margin-top: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.btn-concludi-ordine:hover {
+    background-color: #388E3C;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }

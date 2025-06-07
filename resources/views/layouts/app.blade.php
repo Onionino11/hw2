@@ -14,11 +14,19 @@
     <article>
         <section id="panel">
             <div id="panel-heading">
-                <img class="panel-icon icon" src="{{ asset('img/tag.png') }}"> Menu @yield('title')
+            @hasSection('page_header')
+                @yield('page_header')
+            @else
+                <img class="panel-icon icon" src="http://localhost/hw2/laravel_app/public/img/tag.png"> Menù
+            @endif
             </div>
             <div id="panel-body"> @yield('content') </div>
         </section>
-        @include('cart')
+        @if(View::hasSection('cart'))
+            @yield('cart')
+        @else
+            @include('cart')
+        @endif
     </article>
    
     @include('footer')

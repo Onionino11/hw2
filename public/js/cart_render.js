@@ -71,30 +71,25 @@ function addToCartHandler(e) {
     const prodottoId = cartItem.dataset.prodotto_id || cartItem.dataset.prodotto || '';
     
     if (prodottoId) {
-        // Creo un form temporaneo
         const form = document.createElement('form');
         form.method = 'POST';
         form.action = '/hw2/laravel_app/public/api/cart/add';
         form.style.display = 'none';
         
-        // Aggiungo token CSRF
         const csrfField = document.createElement('input');
         csrfField.type = 'hidden';
         csrfField.name = '_token';
         csrfField.value = document.querySelector('meta[name="csrf-token"]')?.getAttribute('content') || '';
         form.appendChild(csrfField);
         
-        // Aggiungo l'ID del prodotto
         const idField = document.createElement('input');
         idField.type = 'hidden';
         idField.name = 'id';
         idField.value = prodottoId;
         form.appendChild(idField);
         
-        // Aggiungo il form al documento, lo invio e poi lo rimuovo
         document.body.appendChild(form);
-        
-        // Submit del form con AJAX per evitare il reload della pagina
+
         const formData = new FormData(form);
         fetch(form.action, {
             method: 'POST',
@@ -120,30 +115,26 @@ function removeFromCartHandler(e) {
     const prodottoId = cartItem.dataset.prodotto_id || cartItem.dataset.prodotto || '';
     
     if (prodottoId) {
-        // Creo un form temporaneo
+
         const form = document.createElement('form');
         form.method = 'POST';
         form.action = '/hw2/laravel_app/public/api/cart/remove';
         form.style.display = 'none';
         
-        // Aggiungo token CSRF
         const csrfField = document.createElement('input');
         csrfField.type = 'hidden';
         csrfField.name = '_token';
         csrfField.value = document.querySelector('meta[name="csrf-token"]')?.getAttribute('content') || '';
         form.appendChild(csrfField);
         
-        // Aggiungo l'ID del prodotto
         const idField = document.createElement('input');
         idField.type = 'hidden';
         idField.name = 'id';
         idField.value = prodottoId;
         form.appendChild(idField);
         
-        // Aggiungo il form al documento, lo invio e poi lo rimuovo
         document.body.appendChild(form);
         
-        // Submit del form con AJAX per evitare il reload della pagina
         const formData = new FormData(form);
         fetch(form.action, {
             method: 'POST',

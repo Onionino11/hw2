@@ -9,7 +9,7 @@
     <div id="cart-total">
         Totale ordine: <strong id="totale">0,00 €</strong>
     </div>
-    <a href="#" id="ConcludiOrdine" class="btn-concludi-ordine"><span>Concludi Ordine</span> <img src="{{ asset('img/avanti.svg') }}" class="icon"></a>
+    <a href="{{ route('checkout') }}" id="ConcludiOrdine" class="btn-concludi-ordine"><span>Concludi Ordine</span> <img src="{{ asset('img/avanti.svg') }}" class="icon"></a>
 </div>
 
 

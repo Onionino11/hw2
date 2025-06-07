@@ -9,6 +9,9 @@ use App\Http\Controllers\AuthCookieController;
 use App\Http\Controllers\SingupController;
 use App\Http\Controllers\ProdottiController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\OrderController;
 
 Route::get('/', function () {
     return view('index');
@@ -78,3 +81,15 @@ Route::get('/DOLCI', function() {
 Route::get('/api/cart', [CartController::class, 'api']);
 Route::match(['get', 'post'], '/api/cart/add', [CartController::class, 'add']);
 Route::match(['get', 'post'], '/api/cart/remove', [CartController::class, 'remove']);
+Route::post('/api/cart/reorder/{id}', [CartController::class, 'reorder']);
+
+// Checkout
+Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout');
+Route::post('/checkout', [CheckoutController::class, 'processOrder'])->name('checkout.process');
+
+// Profilo
+Route::get('/profilo', [ProfileController::class, 'index'])->name('profilo');
+
+// Ordini
+Route::get('/ordini', [OrderController::class, 'index'])->name('ordini');
+Route::get('/ordini/{id}', [OrderController::class, 'show'])->name('ordini.show');

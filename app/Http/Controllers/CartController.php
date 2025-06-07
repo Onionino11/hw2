@@ -25,7 +25,9 @@ class CartController extends Controller
         } catch (\Exception $e) {
             return response()->json(['success' => false, 'error' => 'DB error', 'msg' => $e->getMessage()]);
         }
-    }public function add(Request $request)
+    }
+    
+    public function add(Request $request)
     {
         $user_id = $request->cookie('loggato');
         if (!$user_id) {
@@ -72,7 +74,8 @@ class CartController extends Controller
         } catch (\Exception $e) {
             return response()->json(['success' => false, 'error' => 'DB error', 'msg' => $e->getMessage()]);
         }
-    }    public function remove(Request $request)
+    }    
+      public function remove(Request $request)
     {
         $user_id = $request->cookie('loggato');
         if (!$user_id) {

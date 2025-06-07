@@ -1,11 +1,18 @@
 @extends('layouts.app')
 
+@section('title', 'Registrazione')
+
+@section('scripts')
+    <link rel="stylesheet" href="{{ asset('css/registration.css') }}">
+@endsection
+
+@section('page_header')
+    <img class="panel-icon icon" src="{{ asset('img/key.svg') }}"> Registrazione
+@endsection
+
 @section('content')
 <article>
     <section id="panel">
-        <div id="panel-heading">
-            <img class="panel-icon icon" src="{{ asset('img/key.svg') }}"> Registrazione
-        </div>
         <div id="panel-body">
             @if ($errors->any())
                 <div class="alert alert-danger">
@@ -53,24 +60,22 @@
                     <div class="controls">
                         <input type="text" name="last_name" value="{{ old('last_name') }}" class="form-control" placeholder="Cognome">
                     </div>
-                </div>
-                <div class="form-group">
+                </div>                <div class="form-group">
                     <label for="birthday" class="control-label">Data di nascita</label>
                     <div class="controls">
                         <div class="control-input-date">
-                            <input type="date" name="birthday" value="{{ old('birthday') }}" class="form-control" placeholder="Data di nascita">
+                            <input type="date" name="birthday" value="{{ old('birthday') }}" class="form-control date-input" placeholder="Data di nascita">
                         </div>
                     </div>
-                </div>
-                <div class="form-group">
+                </div>                <div class="form-group">
                     <label for="city" class="control-label">Città</label>
                     <div class="controls">
                         <div class="row">
                             <div class="campo1">
-                                <input type="text" name="city" value="{{ old('city') }}" class="form-control pac-target-input" placeholder="Città">
+                                <input type="text" name="city" value="{{ old('city') }}" class="form-control" placeholder="Città">
                             </div>
                             <div class="campo2">
-                                <input type="text" name="province" value="{{ old('province') }}" class="form-control" placeholder="Provincia">
+                                <input type="text" name="province" value="{{ old('province') }}" class="form-control" placeholder="Provincia" maxlength="2">
                             </div>
                         </div>
                     </div>
@@ -86,9 +91,8 @@
                     <div class="signup-accept-marketing">
                         <div>
                             <p>Acconsento al trattamento dei miei dati personali per:</p>
-                            <input type="hidden" name="accept_marketing" value="0">
-                            <div class="checkbox">
-                                <label class="control-label">
+                            <input type="hidden" name="accept_marketing" value="0">                            <div class="checkbox">
+                                <label>
                                     <input type="checkbox" name="accept_marketing" value="1" {{ old('accept_marketing') ? 'checked' : '' }}> Ricevere sconti esclusivi, novità ed offerte
                                 </label>
                             </div>
@@ -104,4 +108,7 @@
         </div>
     </section>
 </article>
+@endsection
+
+@section('cart')
 @endsection

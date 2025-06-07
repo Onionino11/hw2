@@ -1,0 +1,528 @@
+/* Stili per le pagine degli ordini */
+
+/* Container principale */
+.ordini-container,
+.dettaglio-ordine-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Alert per messaggi di errore */
+.alert {
+    padding: 10px 15px;
+    border-radius: 4px;
+    margin-bottom: 20px;
+}
+
+.alert-danger {
+    background-color: #ffdede;
+    color: #d32f2f;
+    border: 1px solid #f5c6cb;
+}
+
+/* Header della lista ordini */
+.ordini-header {
+    margin-bottom: 30px;
+    border-bottom: 1px solid #eaeaea;
+    padding-bottom: 15px;
+}
+
+.ordini-header h2 {
+    margin: 0 0 10px 0;
+    font-size: 24px;
+    color: #333;
+}
+
+.ordini-header p {
+    margin: 0;
+    color: #666;
+}
+
+/* Lista degli ordini */
+.ordini-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 20px;
+}
+
+/* Card singolo ordine */
+.ordine-card {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.ordine-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Header della card ordine */
+.ordine-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.ordine-info h3 {
+    margin: 0;
+    font-size: 18px;
+    color: #333;
+}
+
+.ordine-data {
+    font-size: 14px;
+    color: #777;
+}
+
+.status-badge {
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.status-badge.completed {
+    background-color: #e3fcef;
+    color: #00a854;
+}
+
+.status-badge.processing {
+    background-color: #e6f7ff;
+    color: #1890ff;
+}
+
+.status-badge.canceled {
+    background-color: #fff1f0;
+    color: #ff4d4f;
+}
+
+/* Corpo della card ordine */
+.ordine-body {
+    padding: 15px;
+}
+
+.ordine-summary {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Anteprima prodotti */
+.prodotti-preview {
+    display: flex;
+}
+
+.prodotto-preview {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-right: -10px;
+    border: 2px solid #fff;
+    background-color: #f5f5f5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.prodotto-preview img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.prodotto-preview.more {
+    background-color: #f0f0f0;
+    color: #666;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.no-image {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #ddd;
+    color: #666;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+/* Totale ordine */
+.ordine-totale {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.totale-label {
+    font-size: 12px;
+    color: #666;
+}
+
+.totale-value {
+    font-size: 18px;
+    font-weight: 600;
+    color: #333;
+}
+
+/* Footer della card ordine */
+.ordine-footer {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px;
+    border-top: 1px solid #f0f0f0;
+    background-color: #fafafa;
+}
+
+.btn-details,
+.btn-reorder {
+    padding: 8px 15px;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.btn-details {
+    background-color: #f0f0f0;
+    color: #333;
+}
+
+.btn-details:hover {
+    background-color: #e0e0e0;
+}
+
+.btn-reorder {
+    background-color: #ff8c00;
+    color: #fff;
+}
+
+.btn-reorder:hover {
+    background-color: #ff7600;
+}
+
+/* Sezione nessun ordine */
+.no-ordini {
+    text-align: center;
+    padding: 40px 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.empty-icon {
+    max-width: 150px;
+    margin-bottom: 20px;
+}
+
+.no-ordini h3 {
+    margin: 0 0 10px 0;
+    font-size: 22px;
+    color: #333;
+}
+
+.no-ordini p {
+    color: #666;
+    margin-bottom: 20px;
+}
+
+.btn-primary {
+    display: inline-block;
+    background-color: #ff8c00;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 4px;
+    font-weight: 500;
+    text-decoration: none;
+}
+
+.btn-primary:hover {
+    background-color: #ff7600;
+}
+
+/* DETTAGLIO ORDINE */
+
+/* Header del dettaglio ordine */
+.dettaglio-header {
+    margin-bottom: 30px;
+}
+
+.back-link {
+    margin-bottom: 20px;
+}
+
+.back-link a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: #666;
+    font-size: 15px;
+    transition: color 0.2s;
+}
+
+.back-link a:hover {
+    color: #333;
+}
+
+.back-link img {
+    margin-right: 5px;
+    width: 18px;
+    height: 18px;
+}
+
+.ordine-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 15px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.meta-item {
+    display: flex;
+    align-items: center;
+}
+
+.meta-label {
+    font-size: 14px;
+    color: #666;
+    margin-right: 5px;
+}
+
+.meta-value {
+    font-size: 15px;
+    font-weight: 500;
+    color: #333;
+}
+
+/* Corpo del dettaglio ordine */
+.dettaglio-body {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    padding: 20px;
+    margin-bottom: 30px;
+}
+
+.dettaglio-body h3 {
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-size: 18px;
+    color: #333;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+/* Lista prodotti nel dettaglio ordine */
+.prodotti-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.prodotto-item {
+    display: grid;
+    grid-template-columns: 70px 1fr auto auto;
+    align-items: center;
+    gap: 15px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.prodotto-item:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.prodotto-image {
+    width: 60px;
+    height: 60px;
+    border-radius: 8px;
+    overflow: hidden;
+    background-color: #f5f5f5;
+}
+
+.prodotto-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.prodotto-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.prodotto-nome {
+    margin: 0 0 5px 0;
+    font-size: 16px;
+    color: #333;
+}
+
+.prodotto-prezzo {
+    font-size: 14px;
+    color: #666;
+}
+
+.prodotto-quantity {
+    display: flex;
+    align-items: center;
+}
+
+.quantity-label {
+    font-size: 14px;
+    color: #666;
+}
+
+.quantity-value {
+    font-size: 15px;
+    font-weight: 500;
+    color: #333;
+}
+
+.prodotto-subtotal {
+    font-size: 16px;
+    font-weight: 600;
+    color: #333;
+}
+
+/* Totale dettaglio ordine */
+.dettaglio-totale {
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid #f0f0f0;
+}
+
+.totale-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.totale-row.final {
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px solid #f0f0f0;
+}
+
+.totale-row.final .totale-label,
+.totale-row.final .totale-value {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+/* Azioni dettaglio ordine */
+.dettaglio-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.btn-secondary {
+    display: inline-block;
+    background-color: #f0f0f0;
+    color: #333;
+    padding: 10px 20px;
+    border-radius: 4px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: background-color 0.2s;
+}
+
+.btn-secondary:hover {
+    background-color: #e0e0e0;
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+    .ordini-list {
+        grid-template-columns: 1fr;
+    }
+    
+    .ordine-meta {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .prodotto-item {
+        grid-template-columns: 60px 1fr;
+        grid-template-areas:
+            "image info"
+            "image quantity"
+            "subtotal subtotal";
+        row-gap: 8px;
+    }
+    
+    .prodotto-image {
+        grid-area: image;
+    }
+    
+    .prodotto-info {
+        grid-area: info;
+    }
+    
+    .prodotto-quantity {
+        grid-area: quantity;
+    }
+    
+    .prodotto-subtotal {
+        grid-area: subtotal;
+        justify-self: flex-end;
+        margin-top: 5px;
+    }
+    
+    .dettaglio-actions {
+        flex-direction: column;
+    }
+    
+    .dettaglio-actions a {
+        text-align: center;
+    }
+}
+
+@media print {
+    nav, .back-link, .dettaglio-actions {
+        display: none;
+    }
+    
+    body {
+        background: white;
+    }
+    
+    .dettaglio-ordine-container {
+        box-shadow: none;
+        padding: 0;
+    }
+    
+    .ordine-meta, .dettaglio-body {
+        box-shadow: none;
+        border: 1px solid #ddd;
+    }
+    
+    .dettaglio-header {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    
+    .dettaglio-header::before {
+        content: 'Ricevuta Ordine #' attr(data-order-id);
+        display: block;
+        font-size: 22px;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+}
