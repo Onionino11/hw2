@@ -10,8 +10,7 @@
     <img class="panel-icon icon" src="{{ asset('img/ordini.svg') }}"> Dettaglio Ordine #{{ $ordine->id }}
 @endsection
 
-@section('content')
-    <div class="dettaglio-ordine-container">
+@section('content')    <div class="dettaglio-ordine-container">
         <div class="dettaglio-header">
             <div class="back-link">
                 <a href="{{ route('ordini') }}">
@@ -39,10 +38,13 @@
             <h3>Prodotti ordinati</h3>
             <div class="prodotti-list">
                 @foreach($prodotti as $prodotto)
-                <div class="prodotto-item">
-                    <div class="prodotto-image">
+                <div class="prodotto-item">                    <div class="prodotto-image">
                         @if($prodotto->immagine)
-                            <img src="{{ asset('img/prodotti/' . $prodotto->immagine) }}" alt="{{ $prodotto->nome }}">
+                            @if(strpos($prodotto->immagine, 'http') === 0)
+                                <img src="{{ $prodotto->immagine }}" alt="{{ $prodotto->nome }}">
+                            @else
+                                <img src="{{ asset('img/prodotti/' . $prodotto->immagine) }}" alt="{{ $prodotto->nome }}">
+                            @endif
                         @else
                             <div class="no-image">{{ substr($prodotto->nome, 0, 1) }}</div>
                         @endif
@@ -75,12 +77,11 @@
                     <span class="totale-label">Totale:</span>
                     <span class="totale-value">€{{ number_format($ordine->totale, 2, ',', '.') }}</span>
                 </div>
+            </div>        </div>
+          <div class="dettaglio-actions">
+            <div class="feature-coming-soon">
+                La funzione di stampa ricevuta sarà disponibile prossimamente
             </div>
-        </div>
-        
-        <div class="dettaglio-actions">
-            <a href="#" class="btn-secondary" onclick="window.print()">Stampa ricevuta</a>
-            <a href="#" class="btn-primary" id="riordina" data-order-id="{{ $ordine->id }}">Riordina</a>
         </div>
     </div>
 @endsection

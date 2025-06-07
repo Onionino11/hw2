@@ -40,11 +40,14 @@
                     
                     <div class="ordine-body">
                         <div class="ordine-summary">
-                            <div class="prodotti-preview">
-                                @foreach($ordine->prodotti->take(3) as $index => $prodotto)
+                            <div class="prodotti-preview">                                @foreach($ordine->prodotti->take(3) as $index => $prodotto)
                                     <div class="prodotto-preview" style="z-index: {{ 3 - $index }}">
                                         @if($prodotto->immagine)
-                                            <img src="{{ asset('img/prodotti/' . $prodotto->immagine) }}" alt="{{ $prodotto->nome }}">
+                                            @if(strpos($prodotto->immagine, 'http') === 0)
+                                                <img src="{{ $prodotto->immagine }}" alt="{{ $prodotto->nome }}">
+                                            @else
+                                                <img src="{{ asset('img/prodotti/' . $prodotto->immagine) }}" alt="{{ $prodotto->nome }}">
+                                            @endif
                                         @else
                                             <div class="no-image">{{ substr($prodotto->nome, 0, 1) }}</div>
                                         @endif
@@ -60,10 +63,8 @@
                             </div>
                         </div>
                     </div>
-                    
-                    <div class="ordine-footer">
+                      <div class="ordine-footer">
                         <a href="{{ route('ordini.show', $ordine->id) }}" class="btn-details">Visualizza dettagli</a>
-                        <a href="#" class="btn-reorder" data-order-id="{{ $ordine->id }}">Riordina</a>
                     </div>
                 </div>
                 @endforeach

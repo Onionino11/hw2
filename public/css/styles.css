@@ -51,7 +51,7 @@ h3 {
 
 nav {
     background-color: white;
-    height: 52px; /* Ridotto leggermente */
+    height: 52px; 
     width: 100%; 
     position: fixed;
     top: 0px;
@@ -310,7 +310,7 @@ img {
     align-items: center;
     flex-grow: 1;
     padding: 0px 10px;
-    gap: 4px; /* Riduce lo spazio tra gli elementi */
+    gap: 4px; 
 }
 
 #navbar-brand {
@@ -441,7 +441,7 @@ img {
     right: 0;
     background-color: white;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
-    z-index: 1100; /* Assicura che sia sopra gli altri elementi */
+    z-index: 1100;
 }
 
 #language-menu.hidden {
@@ -788,7 +788,7 @@ img {
     .nav-username-link {
         display: none;
     }
-    #nav-campanella2,#nav-profilo,#nav-mobile-auth,#nav-ordini {
+    #nav-campanella2,#nav-profilo,#nav-mobile-auth,#nav-ordini:not(.show-desktop) {
         display: flex;
     }
 
@@ -799,34 +799,34 @@ img {
         padding: 20px 0px 0px 0px;
         flex-direction: row-reverse;
         justify-content: space-between;
-    }    /* Migliora la visualizzazione delle icone nella navbar mobile */
+    }    
     #nav-campanella2 a, #nav-profilo a {
         display: flex;
         justify-content: center;
         align-items: center;
         padding: 3px;
-    }      /* Distanzia le icone in modalità mobile */
+    }    
     #navbar-header {
         gap: 1px;
         padding: 0px 3px;
     }
-      /* Assicura che le bandiere siano allineate correttamente */
+    
     #nav-flag img {
         vertical-align: middle;
         max-height: 18px;
     }
-      /* Migliora la visualizzazione dell'icona profilo e spazia correttamente */
+   
     #navbar-header > div {
         margin-left: 0;
     }
-      /* Allinea le icone verticalmente */
+    
     #nav-profilo img, #nav-campanella2 img {
         vertical-align: middle;
     }
-      /* Ottimizza la visualizzazione dell'icona del profilo nella navbar mobile */
+ 
     #nav-profilo {
         margin-right: 2px;
-    }    /* Assicura che l'icona del profilo sia ben visibile */
+    }  
     #nav-profilo a {
         display: flex;
         align-items: center;
@@ -835,10 +835,12 @@ img {
         min-height: 32px;
     }
     
-    /* Stile per il pulsante di autenticazione mobile */
+
     #nav-mobile-auth {
         margin-left: 2px;
-    }      #nav-mobile-auth a {
+    }
+    
+    #nav-mobile-auth a {
         display: flex;
         align-items: center;
         justify-content: center;
@@ -852,7 +854,7 @@ img {
     }
 }
 
-/* Imposta una dimensione minima per il contenitore del logo */
+
 #home {
     min-width: 100px;
 }
@@ -964,11 +966,11 @@ img {
     display: flex;
     flex-direction: column;
     overflow-y: auto;
-    scrollbar-width: none; /* Firefox */
+    scrollbar-width: none;
 }
 
 .popup-content::-webkit-scrollbar {
-    display: none; /* Chrome, Safari, Opera */
+    display: none; 
 }
 
 .popup-title {
@@ -1124,4 +1126,17 @@ body.modal-open {
 }
 .form.hidden {
     display: none 
+}
+
+.show-desktop {
+    display: flex;
+}
+
+
+@media (min-width: 901px) {
+    #nav-ordini.show-desktop {
+        display: flex;
+        align-items: center;
+        padding: 0 5px;
+    }
 }

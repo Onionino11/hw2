@@ -3,61 +3,7 @@
  */
 
 document.addEventListener('DOMContentLoaded', function() {
-    // Gestione bottoni "Riordina"
-    const riordinaButtons = document.querySelectorAll('.btn-reorder, #riordina');
-    
-    riordinaButtons.forEach(button => {
-        button.addEventListener('click', function(e) {
-            e.preventDefault();
-            const orderId = this.getAttribute('data-order-id');
-            
-            // Disabilitiamo il bottone durante il caricamento
-            this.textContent = 'Caricamento...';
-            this.style.opacity = '0.7';
-            this.style.pointerEvents = 'none';
-            
-            // Chiamata AJAX per aggiungere i prodotti dell'ordine al carrello
-            fetch(`/api/cart/reorder/${orderId}`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
-                }
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    // Mostra notifica di successo
-                    showNotification('Prodotti aggiunti al carrello!', 'success');
-                    
-                    // Aggiorna icona del carrello se necessario
-                    // ...
-                    
-                    // Reindirizza al carrello dopo un breve delay
-                    setTimeout(() => {
-                        window.location.href = '/checkout';
-                    }, 1500);
-                } else {
-                    // Mostra notifica di errore
-                    showNotification('Si è verificato un errore. Riprova più tardi.', 'error');
-                    
-                    // Ripristina il bottone
-                    this.textContent = 'Riordina';
-                    this.style.opacity = '1';
-                    this.style.pointerEvents = 'auto';
-                }
-            })
-            .catch(error => {
-                console.error('Errore:', error);
-                showNotification('Si è verificato un errore. Riprova più tardi.', 'error');
-                
-                // Ripristina il bottone
-                this.textContent = 'Riordina';
-                this.style.opacity = '1';
-                this.style.pointerEvents = 'auto';
-            });
-        });
-    });
+    // Nessun bottone da gestire dopo la rimozione della funzionalità di riordino
     
     // Funzione per mostrare notifiche
     function showNotification(message, type) {
@@ -121,6 +67,10 @@ document.addEventListener('DOMContentLoaded', function() {
         
         .notification.error {
             background-color: #f44336;
+        }
+        
+        .notification.info {
+            background-color: #2196f3;
         }
     `;
     document.head.appendChild(style);

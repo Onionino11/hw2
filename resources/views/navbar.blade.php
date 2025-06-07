@@ -4,7 +4,7 @@
 @endphp
 
 <nav>
-    <h3 id="home"><a id="navbar-brand" href="#">Maluburger</a></h3>
+    <h3 id="home"><a id="navbar-brand" href="http://localhost/hw2/laravel_app/public/">Maluburger</a></h3>
     <div id="navbar-header">
         <div id="nav-campanella">
             <a href="#"><img class="icon" src="{{ asset('img/campanella.svg') }}">
@@ -63,7 +63,7 @@
             @endif
         </div>
         @if($loggato)
-        <div id="nav-ordini">
+        <div id="nav-ordini" class="show-desktop">
             <a href="{{ route('ordini') }}" title="I tuoi ordini"><img class="icon" src="{{ asset('img/ordini.svg') }}"></a>
         </div>
         @endif
@@ -78,7 +78,7 @@
         </div>    </div>
 </nav>
 
-{{-- Popup Modal per Login Mobile --}}
+
 <div id="mobile-auth-modal" class="hidden">
     <div class="mobile-auth-content">
         <div class="mobile-auth-header">

@@ -177,14 +177,13 @@
 /* Footer della card ordine */
 .ordine-footer {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     padding: 15px;
     border-top: 1px solid #f0f0f0;
     background-color: #fafafa;
 }
 
-.btn-details,
-.btn-reorder {
+.btn-details {
     padding: 8px 15px;
     border-radius: 4px;
     font-size: 14px;
@@ -192,24 +191,12 @@
     text-decoration: none;
     cursor: pointer;
     transition: background-color 0.2s;
-}
-
-.btn-details {
     background-color: #f0f0f0;
     color: #333;
 }
 
 .btn-details:hover {
     background-color: #e0e0e0;
-}
-
-.btn-reorder {
-    background-color: #ff8c00;
-    color: #fff;
-}
-
-.btn-reorder:hover {
-    background-color: #ff7600;
 }
 
 /* Sezione nessun ordine */
@@ -427,8 +414,7 @@
 /* Azioni dettaglio ordine */
 .dettaglio-actions {
     display: flex;
-    justify-content: flex-end;
-    gap: 10px;
+    justify-content: center;
     margin-top: 20px;
 }
 
@@ -494,35 +480,18 @@
     }
 }
 
-@media print {
-    nav, .back-link, .dettaglio-actions {
-        display: none;
-    }
-    
-    body {
-        background: white;
-    }
-    
-    .dettaglio-ordine-container {
-        box-shadow: none;
-        padding: 0;
-    }
-    
-    .ordine-meta, .dettaglio-body {
-        box-shadow: none;
-        border: 1px solid #ddd;
-    }
-    
-    .dettaglio-header {
-        text-align: center;
-        margin-bottom: 20px;
-    }
-    
-    .dettaglio-header::before {
-        content: 'Ricevuta Ordine #' attr(data-order-id);
-        display: block;
-        font-size: 22px;
-        font-weight: bold;
-        margin-bottom: 10px;
-    }
+/* Stile per il messaggio "funzionalità in arrivo" */
+.feature-coming-soon {
+    background-color: #f8f9fa;
+    border: 1px dashed #ccc;
+    border-radius: 4px;
+    padding: 15px 20px;
+    text-align: center;
+    color: #666;
+    font-style: italic;
+}
+
+/* La funzionalità di stampa non è ancora implementata */
+.print-order-title {
+    display: none;
 }

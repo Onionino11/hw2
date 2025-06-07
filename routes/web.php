@@ -81,7 +81,6 @@ Route::get('/DOLCI', function() {
 Route::get('/api/cart', [CartController::class, 'api']);
 Route::match(['get', 'post'], '/api/cart/add', [CartController::class, 'add']);
 Route::match(['get', 'post'], '/api/cart/remove', [CartController::class, 'remove']);
-Route::post('/api/cart/reorder/{id}', [CartController::class, 'reorder']);
 
 // Checkout
 Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout');
