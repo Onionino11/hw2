@@ -6,7 +6,12 @@
 <script src="{{ asset('js/popup.js') }}" defer></script>
 <script src="{{ asset('js/language.js') }}" defer></script>
 <script src="{{ asset('js/campanella.js') }}" defer></script>
+<script src="{{ asset('js/common.js') }}" defer></script>
+<script src="{{ asset('js/categories.js') }}" defer></script>
+<script src="{{ asset('js/db-products.js') }}" defer></script>
+<script src="{{ asset('js/api-products.js') }}" defer></script>
 <script src="{{ asset('js/prodotti.js') }}" defer></script>
+<script src="{{ asset('js/cart_render.js') }}" defer></script>
 <script src="{{ asset('js/orari.js') }}" defer></script>
 <script src="{{ asset('js/validazione.js') }}" defer></script>
 

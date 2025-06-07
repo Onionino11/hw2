@@ -2,6 +2,7 @@
 <html>
 <head>
     @include('header')
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>@yield('title', 'Maluburger')</title>
     @yield('scripts')
 </head>

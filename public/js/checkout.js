@@ -1,4 +1,4 @@
-fetch('../php/api_cart.php')
+fetch('/hw2/laravel_app/public/api/cart')
   .then(r => r.json())
   .then(data => {
     const list = document.getElementById('checkout-summary-list');

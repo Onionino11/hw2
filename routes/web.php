@@ -8,10 +8,11 @@ use App\Http\Controllers\OrariController;
 use App\Http\Controllers\AuthCookieController;
 use App\Http\Controllers\SingupController;
 use App\Http\Controllers\ProdottiController;
+use App\Http\Controllers\CartController;
 
 Route::get('/', function () {
     return view('index');
-});
+})->name('home');
 
 Route::get('/test/{param1?}/{param2?}', function ($a='Prova a passare un parametro', $b='e un secondo parametro') {
     echo "<h1>This is a test route!</h1>";
@@ -72,3 +73,8 @@ Route::get('/BEVANDE', function() {
 Route::get('/DOLCI', function() {
     return view('prodotti_view')->with('categoria', 'dessert')->with('title','DOLCI');
 });
+
+// API Carrello
+Route::get('/api/cart', [CartController::class, 'api']);
+Route::match(['get', 'post'], '/api/cart/add', [CartController::class, 'add']);
+Route::match(['get', 'post'], '/api/cart/remove', [CartController::class, 'remove']);
