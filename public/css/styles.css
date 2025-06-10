@@ -26,7 +26,6 @@ h3 {
     color: inherit;
     display: flex;
     align-items: center;
-    transition: all 0.3s ease;
 }
 
 .nav-username-link:hover {
@@ -244,12 +243,17 @@ header {
 
 #navigazione-select{
     display: none;
+    cursor: pointer;
 }
 
 .tipo3 {
     display: block;
     padding: 15px;
     margin: 0px 10px;
+}
+
+.tipo3.hidden {
+    display: none;
 }
 
 .tipo3:hover {
@@ -486,7 +490,6 @@ img {
 
 #nav-form {
     padding-left: 15px;
-    margin-top: 15px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -499,6 +502,7 @@ img {
     padding: 10px;
     border: 0px;
     margin: 2px;
+    width: auto;
 }
 
 .submit{
@@ -508,6 +512,8 @@ img {
     padding: 8px 15px;
     border: 0px;
     margin: 5px;
+    position: relative;
+    cursor: pointer;
 }
 
 .submit:hover{
@@ -839,7 +845,7 @@ img {
     #nav-mobile-auth {
         margin-left: 2px;
     }
-    
+
     #nav-mobile-auth a {
         display: flex;
         align-items: center;
@@ -881,14 +887,15 @@ img {
     }
     .tipo3 {
         display: none;
-    }
-    #navigazione {
+    }    #navigazione {
         background-color: lightgray;
         font-size: 14px;
         padding: 10px 20px;
         border-radius: 10px;
-        height: 35px;
-        margin: 15px ;
+        height: auto;
+        min-height: 35px;
+        margin: 15px;
+        flex-direction: column;
     }
 
     #navigazione-select{
@@ -897,6 +904,13 @@ img {
         align-items: center;
         flex-grow: 1;
         height: 100%;
+        width: 100%;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+    
+    #navigazione-select:hover {
+        background-color: #d0d0d0;
     }
     #panel-body{
         padding: 0px;

@@ -1,6 +1,3 @@
-/* Stili per le pagine degli ordini */
-
-/* Container principale */
 .ordini-container,
 .dettaglio-ordine-container {
     max-width: 1200px;
@@ -8,7 +5,7 @@
     padding: 20px;
 }
 
-/* Alert per messaggi di errore */
+
 .alert {
     padding: 10px 15px;
     border-radius: 4px;
@@ -21,7 +18,6 @@
     border: 1px solid #f5c6cb;
 }
 
-/* Header della lista ordini */
 .ordini-header {
     margin-bottom: 30px;
     border-bottom: 1px solid #eaeaea;
@@ -39,28 +35,30 @@
     color: #666;
 }
 
-/* Lista degli ordini */
+
 .ordini-list {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    display: flex;
+    flex-wrap: wrap;
     gap: 20px;
 }
 
-/* Card singolo ordine */
+.ordine-card {
+    flex: 1 0 350px;
+    max-width: calc(50% - 10px);
+}
+
+
 .ordine-card {
     background-color: #fff;
     border-radius: 8px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
     overflow: hidden;
-    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
 }
 
 .ordine-card:hover {
-    transform: translateY(-5px);
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
-/* Header della card ordine */
 .ordine-header {
     display: flex;
     justify-content: space-between;
@@ -102,7 +100,6 @@
     color: #ff4d4f;
 }
 
-/* Corpo della card ordine */
 .ordine-body {
     padding: 15px;
 }
@@ -113,7 +110,6 @@
     align-items: center;
 }
 
-/* Anteprima prodotti */
 .prodotti-preview {
     display: flex;
 }
@@ -153,10 +149,8 @@
     background-color: #ddd;
     color: #666;
     font-weight: bold;
-    text-transform: uppercase;
 }
 
-/* Totale ordine */
 .ordine-totale {
     display: flex;
     flex-direction: column;
@@ -174,7 +168,6 @@
     color: #333;
 }
 
-/* Footer della card ordine */
 .ordine-footer {
     display: flex;
     justify-content: center;
@@ -190,7 +183,6 @@
     font-weight: 500;
     text-decoration: none;
     cursor: pointer;
-    transition: background-color 0.2s;
     background-color: #f0f0f0;
     color: #333;
 }
@@ -199,7 +191,6 @@
     background-color: #e0e0e0;
 }
 
-/* Sezione nessun ordine */
 .no-ordini {
     text-align: center;
     padding: 40px 20px;
@@ -238,9 +229,6 @@
     background-color: #ff7600;
 }
 
-/* DETTAGLIO ORDINE */
-
-/* Header del dettaglio ordine */
 .dettaglio-header {
     margin-bottom: 30px;
 }
@@ -255,7 +243,6 @@
     text-decoration: none;
     color: #666;
     font-size: 15px;
-    transition: color 0.2s;
 }
 
 .back-link a:hover {
@@ -294,8 +281,6 @@
     font-weight: 500;
     color: #333;
 }
-
-/* Corpo del dettaglio ordine */
 .dettaglio-body {
     background-color: #fff;
     border-radius: 8px;
@@ -312,8 +297,6 @@
     padding-bottom: 10px;
     border-bottom: 1px solid #f0f0f0;
 }
-
-/* Lista prodotti nel dettaglio ordine */
 .prodotti-list {
     display: flex;
     flex-direction: column;
@@ -321,12 +304,24 @@
 }
 
 .prodotto-item {
-    display: grid;
-    grid-template-columns: 70px 1fr auto auto;
+    display: flex;
     align-items: center;
     gap: 15px;
     padding-bottom: 15px;
     border-bottom: 1px solid #f0f0f0;
+}
+
+.prodotto-image {
+    flex: 0 0 70px;
+}
+
+.prodotto-info {
+    flex: 1;
+}
+
+.prodotto-quantity,
+.prodotto-subtotal {
+    flex: 0 0 auto;
 }
 
 .prodotto-item:last-child {
@@ -385,8 +380,6 @@
     font-weight: 600;
     color: #333;
 }
-
-/* Totale dettaglio ordine */
 .dettaglio-totale {
     margin-top: 30px;
     padding-top: 20px;
@@ -410,8 +403,6 @@
     font-size: 18px;
     font-weight: 600;
 }
-
-/* Azioni dettaglio ordine */
 .dettaglio-actions {
     display: flex;
     justify-content: center;
@@ -426,17 +417,15 @@
     border-radius: 4px;
     font-weight: 500;
     text-decoration: none;
-    transition: background-color 0.2s;
 }
 
 .btn-secondary:hover {
     background-color: #e0e0e0;
 }
-
-/* Media Queries */
 @media (max-width: 768px) {
     .ordini-list {
-        grid-template-columns: 1fr;
+        display: flex;
+        flex-direction: column;
     }
     
     .ordine-meta {
@@ -445,29 +434,27 @@
     }
     
     .prodotto-item {
-        grid-template-columns: 60px 1fr;
-        grid-template-areas:
-            "image info"
-            "image quantity"
-            "subtotal subtotal";
-        row-gap: 8px;
+        display: flex;
+        flex-wrap: wrap;
     }
     
     .prodotto-image {
-        grid-area: image;
+        flex: 0 0 60px;
+        margin-right: 10px;
     }
     
     .prodotto-info {
-        grid-area: info;
+        flex: 1;
     }
     
     .prodotto-quantity {
-        grid-area: quantity;
+        flex: 0 0 100%;
+        padding-left: 70px;
     }
     
     .prodotto-subtotal {
-        grid-area: subtotal;
-        justify-self: flex-end;
+        flex: 1;
+        text-align: right;
         margin-top: 5px;
     }
     
@@ -480,7 +467,6 @@
     }
 }
 
-/* Stile per il messaggio "funzionalità in arrivo" */
 .feature-coming-soon {
     background-color: #f8f9fa;
     border: 1px dashed #ccc;
@@ -491,7 +477,6 @@
     font-style: italic;
 }
 
-/* La funzionalità di stampa non è ancora implementata */
 .print-order-title {
     display: none;
 }

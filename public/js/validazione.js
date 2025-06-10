@@ -73,9 +73,9 @@ function validazione(event) {
 
 const forms = document.querySelectorAll('form');
 if (forms && forms.length > 0) {
-    forms.forEach(function(form) {
+    for (const form of forms) {
         if (form) {
             form.addEventListener('submit', validazione);
         }
-    });
+    }
 }

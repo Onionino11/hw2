@@ -1,0 +1,140 @@
+
+@media (max-width: 900px) {    
+    #nav-campanella, #nav-pippo, #nav-form, #nav-freccia {
+        display: none; 
+    }
+    
+    .nav-username-link {
+        display: none;
+    }
+    
+    #nav-campanella2, #nav-profilo, #nav-mobile-auth, #nav-ordini:not(.show-desktop) {
+        display: flex;
+    }
+
+    footer {
+        flex-direction: column;
+        height: auto;
+    }
+    
+    #credits {
+        padding: 20px 0px 0px 0px;
+        flex-direction: row-reverse;
+        justify-content: space-between;
+    }
+    
+    #nav-campanella2 a, #nav-profilo a {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 3px;
+    }
+    
+    #navbar-header {
+        gap: 1px;
+        padding: 0px 3px;
+    }
+    
+    #nav-flag img {
+        vertical-align: middle;
+        max-height: 18px;
+    }
+   
+    #navbar-header > div {
+        margin-left: 0;
+    }
+    
+    #nav-profilo img, #nav-campanella2 img {
+        vertical-align: middle;
+    }
+ 
+    #nav-profilo {
+        margin-right: 2px;
+    }
+    
+    #nav-profilo a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 32px;
+        min-height: 32px;
+    }
+    
+    #nav-mobile-auth {
+        margin-left: 2px;
+    }
+
+    #nav-mobile-auth a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 32px;
+        min-height: 32px;
+    }
+    
+    #nav-mobile-auth .icon {
+        width: 24px;
+        height: 24px;
+    }
+}
+
+@media (max-width: 770px) {
+    .head-tipo1 {
+        display: none; 
+    }
+
+    header {
+        flex-direction: column;
+        padding: 0px 15px;
+        height: auto;
+    }
+
+    .head-tipo2 {
+        margin-bottom: 10px;
+        flex-grow: 1;
+        width: 100%;
+    }    
+    #head-orario {
+        display: flex;
+        justify-content: center;
+    }
+    
+    /* Gli stili di navigazione sono stati spostati nel file navigation.css */
+    
+    #panel-body {
+        padding: 0px;
+    } 
+
+    .item-titolo {
+        display: flex;
+        flex-direction: column;
+        align-items: start;
+    }
+
+    article {
+        flex-direction: column;
+        margin-bottom: 40px;
+    }
+}
+
+@media (max-width: 768px) {
+    .panel-item {
+        max-width: 100%; 
+    }
+
+    .item-body {
+        text-align: center; 
+    }
+
+    .item-img {
+        max-width: 40%; 
+    }
+
+    .item-button {
+        justify-content: center; 
+    }
+}
+
+#home {
+    min-width: 100px;
+}

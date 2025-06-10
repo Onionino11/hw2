@@ -1,0 +1,74 @@
+/* BASE STYLES */
+body {
+    background-color: white;
+    color: black;
+    font-family: "Avant Garde","Poppins",Avantgarde, "Century Gothic", CenturyGothic, "AppleGothic", sans-serif;
+    font-size: 14px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+a {
+    color: rgb(238, 127, 1);
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+h3 {
+    margin: 0px;
+    padding: 0px;
+}
+
+p {
+    margin: 0px;
+    padding: 5px;
+}
+
+.container {
+    display: flex;
+    align-items: center;
+}
+
+.icon {
+    width: 26px;
+    height: 26px;
+    margin: 0px 3px;
+}
+
+.boxed {
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+}
+
+.submit {
+    background-color: rgb(238, 127, 1);
+    color: white;
+    border-radius: 7px;
+    padding: 8px 15px;
+    border: 0px;
+    margin: 5px;
+    position: relative;
+    cursor: pointer;
+}
+
+.submit:hover {
+    background-color: rgb(197, 105, 0);
+}
+
+body.modal-open {
+    overflow: hidden;
+    position: fixed;
+    width: 100vw;
+}
+
+.linknero {
+    color: black;
+    display: flex;
+    justify-content: end;
+}

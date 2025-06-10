@@ -157,7 +157,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_COOKIE['loggato'])) {
     </article>
     <?php include 'footer.php'; ?>
     <?php if (!$ordine_inviato): ?>
-    <script src="../assets/js/checkout.js"></script>
+    <script src="../assets/js/checkout.js" defer></script>
     <?php endif; ?>
 </body>
 </html>

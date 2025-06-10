@@ -1,5 +1,13 @@
 const promoScopri = document.querySelector('#promo-scopri');
 const popup = document.querySelector('#modal-view');
+
+function removePopup(banneroffert) {
+    popup.removeChild(banneroffert);
+    popup.classList.add('hidden');
+    document.body.classList.remove('modal-open');
+    promoScopri.addEventListener('click', showPopup);
+}
+
 function showPopup() {
     popup.classList.remove('hidden');
     document.body.classList.add('modal-open'); 
@@ -14,18 +22,13 @@ function showPopup() {
     closeIcon.src = 'img/xbianca.svg';
     closeIcon.classList.add('close-icon');
     closeButton.appendChild(closeIcon);
-    closeButton.addEventListener('click', removePopup);
-    function removePopup() {
-        popup.removeChild(banneroffert);
-        popup.classList.add('hidden');
-        document.body.classList.remove('modal-open');
-        promoScopri.addEventListener('click', showPopup);
+    function handleCloseClick() {
+        removePopup(banneroffert);
     }
+    closeButton.addEventListener('click', handleCloseClick);
     banneroffertTitle.appendChild(closeButton);
-    banneroffert.appendChild(banneroffertTitle);
-    const offerte = data.offerte;
-    for (let index = 0; index < offerte.length; index++) {
-        const element = offerte[index];
+    banneroffert.appendChild(banneroffertTitle);    const offerte = data.offerte;
+    for (const element of offerte) {
         const offertElement = document.createElement('div');
         offertElement.classList.add('offerta-element');
         const offertElementTitle = document.createElement('div');

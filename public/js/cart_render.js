@@ -1,6 +1,8 @@
 function renderCart(cartData) {
     const cartCollection = document.getElementById('cart-collection');
-    cartCollection.innerHTML = '';
+    while (cartCollection.firstChild) {
+        cartCollection.removeChild(cartCollection.firstChild);
+    }
     let totale = 0;
     if (!cartData || !Array.isArray(cartData.items) || cartData.items.length === 0) {
         const vuotoDiv = document.createElement('div');
@@ -14,7 +16,7 @@ function renderCart(cartData) {
     }
     var btn = document.getElementById('ConcludiOrdine');
     if(btn) btn.classList.remove('hidden');
-    cartData.items.forEach(function(item) {
+    for (const item of cartData.items) {
         totale += item.prezzo * item.quantita;
         const cartItem = document.createElement('div');
         cartItem.className = 'cart-item';
@@ -35,129 +37,191 @@ function renderCart(cartData) {
         qtyDiv.appendChild(qtySpan);
         qtyDiv.appendChild(document.createTextNode('x'));
         leftTop.appendChild(qtyDiv);
+        const btnRemove = document.createElement('button');
+        btnRemove.className = 'cart-item-btn-remove';
+        btnRemove.textContent = '-';
+        btnRemove.onclick = removeFromCartHandler;
+        leftTop.appendChild(btnRemove);
         left.appendChild(leftTop);
-        const btnRm = document.createElement('button');
-        btnRm.className = 'cart-item-btn-rm';
-        btnRm.textContent = 'x';
-        btnRm.onclick = removeFromCartHandler;
-        left.appendChild(btnRm);
+        const leftBottom = document.createElement('div');
+        leftBottom.className = 'cart-item-left-bottom';
+        leftBottom.textContent = item.nome;
+        left.appendChild(leftBottom);
         cartItem.appendChild(left);
-        const center = document.createElement('div');
-        center.className = 'cart-item-center';
-        const nameDiv = document.createElement('div');
-        nameDiv.className = 'cart-item-name';
-        nameDiv.textContent = item.nome;
-        center.appendChild(nameDiv);
-        const descDiv = document.createElement('div');
-        descDiv.className = 'cart-item-description';
-        descDiv.textContent = item.descrizione;
-        center.appendChild(descDiv);
-        cartItem.appendChild(center);
         const right = document.createElement('div');
         right.className = 'cart-item-right';
-        const priceSpan = document.createElement('span');
-        priceSpan.className = 'cart-item-price';
-        priceSpan.textContent = '€' + (Number(item.prezzo)).toFixed(2).replace('.', ',');
-        right.appendChild(priceSpan);
+        const prezzo = document.createElement('div');
+        prezzo.className = 'cart-item-prezzo';
+        const prezzoValue = parseFloat(item.prezzo);
+        prezzo.textContent = prezzoValue.toFixed(2).replace('.', ',') + ' €';
+        right.appendChild(prezzo);
+        const remove = document.createElement('button');
+        remove.className = 'cart-item-remove';
+        remove.innerHTML = '&times;';
+        remove.onclick = removeItemFromCartHandler;
+        right.appendChild(remove);
         cartItem.appendChild(right);
         cartCollection.appendChild(cartItem);
-    });
+    }
     document.getElementById('totale').textContent = totale.toFixed(2).replace('.', ',') + ' €';
 }
 
-function addToCartHandler(e) {
-    e.preventDefault();
-    const cartItem = e.target.closest('.cart-item');
-    const prodottoId = cartItem.dataset.prodotto_id || cartItem.dataset.prodotto || '';
+function addToCartHandler(event) {
+    const button = event.target;
+    const cartItem = button.closest('.cart-item');
+    const prodottoId = cartItem.dataset.prodotto;
     
-    if (prodottoId) {
-        const form = document.createElement('form');
-        form.method = 'POST';
-        form.action = '/hw2/laravel_app/public/api/cart/add';
-        form.style.display = 'none';
-        
-        const csrfField = document.createElement('input');
-        csrfField.type = 'hidden';
-        csrfField.name = '_token';
-        csrfField.value = document.querySelector('meta[name="csrf-token"]')?.getAttribute('content') || '';
-        form.appendChild(csrfField);
-        
-        const idField = document.createElement('input');
-        idField.type = 'hidden';
-        idField.name = 'id';
-        idField.value = prodottoId;
-        form.appendChild(idField);
-        
-        document.body.appendChild(form);
-
-        const formData = new FormData(form);
-        fetch(form.action, {
-            method: 'POST',
-            body: formData
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                reloadCart();
-            } else {
-                console.error('Errore:', data.error);
-            }
-        })
-        .finally(() => {
-            document.body.removeChild(form);
-        });
+    const form = document.createElement('form');
+    form.action = '/hw2/laravel_app/public/api/cart/add';
+    form.method = 'post';
+    form.style.display = 'none';
+    
+    const inputProdottoId = document.createElement('input');
+    inputProdottoId.name = 'prodotto_id';
+    inputProdottoId.value = prodottoId;
+    form.appendChild(inputProdottoId);
+    
+    const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+    const inputCsrf = document.createElement('input');
+    inputCsrf.name = '_token';
+    inputCsrf.value = csrfToken;
+    form.appendChild(inputCsrf);
+    
+    document.body.appendChild(form);
+    
+    function parseResponse(response) {
+        return response.json();
     }
+    
+    function handleData(data) {
+        if (data.success) {
+            reloadCart();
+        } else {
+            // Nessun log di errori
+        }
+    }
+    
+    function cleanupForm() {
+        document.body.removeChild(form);
+    }
+    
+    fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form)
+    })
+    .then(parseResponse)
+    .then(handleData)
+    .finally(cleanupForm);
 }
 
-function removeFromCartHandler(e) {
-    e.preventDefault();
-    const cartItem = e.target.closest('.cart-item');
-    const prodottoId = cartItem.dataset.prodotto_id || cartItem.dataset.prodotto || '';
+function removeFromCartHandler(event) {
+    const button = event.target;
+    const cartItem = button.closest('.cart-item');
+    const prodottoId = cartItem.dataset.prodotto;
     
-    if (prodottoId) {
-
-        const form = document.createElement('form');
-        form.method = 'POST';
-        form.action = '/hw2/laravel_app/public/api/cart/remove';
-        form.style.display = 'none';
-        
-        const csrfField = document.createElement('input');
-        csrfField.type = 'hidden';
-        csrfField.name = '_token';
-        csrfField.value = document.querySelector('meta[name="csrf-token"]')?.getAttribute('content') || '';
-        form.appendChild(csrfField);
-        
-        const idField = document.createElement('input');
-        idField.type = 'hidden';
-        idField.name = 'id';
-        idField.value = prodottoId;
-        form.appendChild(idField);
-        
-        document.body.appendChild(form);
-        
-        const formData = new FormData(form);
-        fetch(form.action, {
-            method: 'POST',
-            body: formData
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                reloadCart();
-            } else {
-                console.error('Errore:', data.error);
-            }
-        })
-        .finally(() => {
-            document.body.removeChild(form);
-        });
+    const form = document.createElement('form');
+    form.action = '/hw2/laravel_app/public/api/cart/remove';
+    form.method = 'post';
+    form.style.display = 'none';
+    
+    const inputProdottoId = document.createElement('input');
+    inputProdottoId.name = 'prodotto_id';
+    inputProdottoId.value = prodottoId;
+    form.appendChild(inputProdottoId);
+    
+    const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+    const inputCsrf = document.createElement('input');
+    inputCsrf.name = '_token';
+    inputCsrf.value = csrfToken;
+    form.appendChild(inputCsrf);
+    
+    document.body.appendChild(form);
+    
+    function parseResponse(response) {
+        return response.json();
     }
+    
+    function handleData(data) {
+        if (data.success) {
+            reloadCart();
+        } else {
+            // Nessun log di errori
+        }
+    }
+    
+    function cleanupForm() {
+        document.body.removeChild(form);
+    }
+    
+    fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form)
+    })
+    .then(parseResponse)
+    .then(handleData)
+    .finally(cleanupForm);
+}
+
+function removeItemFromCartHandler(event) {
+    const button = event.target;
+    const cartItem = button.closest('.cart-item');
+    const prodottoId = cartItem.dataset.prodotto;
+    
+    const form = document.createElement('form');
+    form.action = '/hw2/laravel_app/public/api/cart/delete';
+    form.method = 'post';
+    form.style.display = 'none';
+    
+    const inputProdottoId = document.createElement('input');
+    inputProdottoId.name = 'prodotto_id';
+    inputProdottoId.value = prodottoId;
+    form.appendChild(inputProdottoId);
+    
+    const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+    const inputCsrf = document.createElement('input');
+    inputCsrf.name = '_token';
+    inputCsrf.value = csrfToken;
+    form.appendChild(inputCsrf);
+    
+    document.body.appendChild(form);
+    
+    function parseResponse(response) {
+        return response.json();
+    }
+    
+    function handleData(data) {
+        if (data.success) {
+            reloadCart();
+        } else {
+            // Nessun log di errori
+        }
+    }
+    
+    function cleanupForm() {
+        document.body.removeChild(form);
+    }
+    
+    fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form)
+    })
+    .then(parseResponse)
+    .then(handleData)
+    .finally(cleanupForm);
 }
 
 function reloadCart() {
+    function parseResponse(r) {
+        return r.json();
+    }
+    
+    function handleData(data) {
+        renderCart(data);
+    }
+    
     fetch('/hw2/laravel_app/public/api/cart')
-        .then(r => r.json())
-        .then(data => renderCart(data));
+        .then(parseResponse)
+        .then(handleData);
 }
 
 reloadCart();

@@ -1,77 +1,69 @@
-/**
- * Script per la gestione della pagina degli ordini
- */
-
-document.addEventListener('DOMContentLoaded', function() {
-    // Nessun bottone da gestire dopo la rimozione della funzionalità di riordino
-    
-    // Funzione per mostrare notifiche
+function initOrdiniPage() {
     function showNotification(message, type) {
-        // Controlla se esiste già un elemento di notifica
         let notification = document.querySelector('.notification');
         
-        // Se non esiste, crealo
         if (!notification) {
             notification = document.createElement('div');
             notification.className = 'notification';
             document.body.appendChild(notification);
         }
         
-        // Imposta il tipo e il messaggio
         notification.className = 'notification ' + type;
         notification.textContent = message;
         
-        // Mostra la notifica
         notification.style.display = 'block';
         
-        // Aggiungi la classe per l'animazione
-        setTimeout(() => {
+        function addShowClass() {
             notification.classList.add('show');
-        }, 10);
+        }
         
-        // Nascondi la notifica dopo 3 secondi
-        setTimeout(() => {
+        setTimeout(addShowClass, 10);
+        
+        setTimeout(function() {
             notification.classList.remove('show');
-            setTimeout(() => {
+            
+            setTimeout(function() {
                 notification.style.display = 'none';
             }, 300);
         }, 3000);
     }
     
-    // Stile CSS inline per le notifiche
-    const style = document.createElement('style');
-    style.textContent = `
-        .notification {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            padding: 15px 20px;
-            border-radius: 4px;
-            color: white;
-            font-weight: 500;
-            z-index: 9999;
-            transform: translateY(-20px);
-            opacity: 0;
-            transition: transform 0.3s, opacity 0.3s;
-            display: none;
-        }
+    function handleOrdineDetails() {
+        const detailButtons = document.querySelectorAll('.visualizza-dettagli');
         
-        .notification.show {
-            transform: translateY(0);
-            opacity: 1;
+        for (const button of detailButtons) {
+            button.addEventListener('click', function(e) {
+                e.preventDefault();
+                const ordineId = this.getAttribute('data-ordine');
+                  function handleResponse(response) {
+                    if (!response.ok) {
+                        throw new Error('Errore nella richiesta');
+                    }
+                    return response.json();
+                }
+                
+                function processData(data) {
+                    if (data.success) {
+                        window.location.href = `/hw2/laravel_app/public/ordini/${ordineId}`;
+                    } else {
+                        showNotification('Errore nel caricamento dei dettagli dell\'ordine', 'error');
+                    }
+                }
+                
+                function handleError() {
+                    showNotification('Si è verificato un errore nella comunicazione con il server', 'error');
+                }
+                
+                fetch(`/hw2/laravel_app/public/api/ordini/${ordineId}`)
+                    .then(handleResponse)
+                    .then(processData)
+                    .catch(handleError);
+            });
         }
-        
-        .notification.success {
-            background-color: #4caf50;
-        }
-        
-        .notification.error {
-            background-color: #f44336;
-        }
-        
-        .notification.info {
-            background-color: #2196f3;
-        }
-    `;
-    document.head.appendChild(style);
-});
+    }
+    
+    handleOrdineDetails();
+}
+
+// Esegui direttamente la funzione poiché lo script ha l'attributo defer
+initOrdiniPage();

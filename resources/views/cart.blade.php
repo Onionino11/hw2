@@ -1,4 +1,4 @@
-<script src="{{ asset('js/cart_render.js') }}"></script>
+<script src="{{ asset('js/cart_render.js') }}" defer></script>
 
 <div id="cart">
     <div id="panel-heading"> <img class="panel-icon icon" src="{{ asset('img/cart.svg') }}"> Il tuo ordine</div>

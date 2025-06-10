@@ -1,0 +1,148 @@
+
+#modal-view {
+    display: flex;
+    flex-grow: 1;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    padding: 0;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    background-color: rgba(0, 0, 0, 0.2);
+    z-index: 900;
+    overflow: hidden;
+}
+
+#modal-view.hidden {
+    display: none;
+}
+
+.popup-content {
+    background-color: white;
+    padding: 20px;
+    position: relative;
+    border-radius: 10px;
+    width: 50vw;
+    max-width: 600px;
+    min-width: 300px;
+    max-height: 90vh;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    scrollbar-width: none;
+}
+
+.popup-content::-webkit-scrollbar {
+    display: none; 
+}
+
+.popup-title {
+    flex-grow: 1;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+.close-button {
+    background-color: rgb(238, 127, 1);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.close-icon {
+    height: 10px;
+    width: 10px;
+}
+
+.offerta-element {
+    display: flex;
+    flex-direction: column;
+    padding: 20px; 
+    border-radius: 10px; 
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); 
+    margin-bottom: 20px; 
+}
+
+.offerta-img {
+    width: 100%; 
+    height: auto; 
+    border-radius: 10px; 
+    margin-bottom: 10px; 
+}
+
+.offerta-validity {
+    display: flex;
+    align-items: center; 
+    justify-content: flex-end;
+    margin-top: -20px;
+    margin-right: -20px;
+    margin-bottom: -5px; 
+}
+
+.offerta-validity-text {
+    background-color: rgb(238, 127, 1);
+    font-size: 14px; 
+    color: white; 
+    border-radius: 10px 0px 0px 10px; 
+}
+
+.offerta-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.offerta-text {
+    font-size: 14px;
+    font-weight: normal;
+    color: black;
+    margin-bottom: 10px;
+}
+
+.offerta-disponibile {
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 15px;
+}
+
+.control-label {
+    flex-basis: 25%;
+    font-weight: bold;
+    margin-right: 10px;
+    align-items: center;
+    padding: 10px;
+}
+
+.controls {
+    flex-basis: 75%;
+    display: flex;
+    align-items: center;
+}
+
+.form-control {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #f5f5f5;
+    color: gray;
+    border: 1px solid #ccc;
+    font-size: 14px;
+}
+
+.signup-accept-marketing {
+    margin-left: 60px;
+}

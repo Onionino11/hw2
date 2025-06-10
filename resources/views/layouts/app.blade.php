@@ -4,6 +4,7 @@
     @include('header')
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>@yield('title', 'Maluburger')</title>
+    <script src="{{ asset('js/navigation.js') }}" defer></script>
     @yield('scripts')
 </head>
 <body>

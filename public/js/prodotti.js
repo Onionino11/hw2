@@ -176,10 +176,11 @@ function createItem(elemento) {
                 method: 'POST',
                 body: formData
             })
-            .then(response => response.json())
-            .then(data => {
+            .then(function parseResponse(response) {
+                return response.json();
+            })
+            .then(function handleData(data) {
                 if (data.success) {
-                    // Aggiorna il carrello senza mostrare l'alert
                     if (typeof reloadCart === 'function') {
                         reloadCart();
                     }
@@ -328,7 +329,6 @@ function onJsonItems(data) {
 }
 
 function hideItemsCategoria() {
-    console.log('hideItemsCategoria');
     const panelItems = document.querySelectorAll('#panel-body .panel-item');
     for (const item of panelItems) {
         if (item.dataset.prodotto == 0) {

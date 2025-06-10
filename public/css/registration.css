@@ -11,7 +11,6 @@
 .form-group {
     margin-bottom: 20px;
     display: flex;
-    flex-wrap: wrap;
 }
 
 .control-label {
@@ -36,15 +35,12 @@
     border-radius: 5px;
     background-color: #f9f9f9;
     font-size: 14px;
-    transition: border-color 0.3s ease;
 }
 
 .form-control:focus {
     border-color: rgb(238, 127, 1);
     outline: none;
     box-shadow: 0 0 5px rgba(238, 127, 1, 0.3);
-    transform: translateY(-2px);
-    transition: transform 0.2s, border-color 0.3s, box-shadow 0.3s;
 }
 
 .form-control::placeholder {
@@ -131,7 +127,6 @@ hr {
     font-size: 16px;
     font-weight: bold;
     cursor: pointer;
-    transition: all 0.3s ease;
     margin-left: 25%;
     box-shadow: 0 4px 6px rgba(0,0,0,0.1);
     position: relative;
@@ -140,12 +135,10 @@ hr {
 
 .submit:hover {
     background-color: rgb(197, 105, 0);
-    transform: translateY(-2px);
     box-shadow: 0 6px 8px rgba(0,0,0,0.15);
 }
 
 .submit:active {
-    transform: translateY(0);
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
