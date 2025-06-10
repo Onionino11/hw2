@@ -13,10 +13,6 @@ function processData(data) {
     }
 }
 
-function handleError(error) {
-    // Nessun console.log o console.error
-}
-
 fetch('http://localhost/hw2/laravel_app/public/db/' + encodeURIComponent(categoria) + '/' + number)
     .then(handleResponse)
     .then(processData)

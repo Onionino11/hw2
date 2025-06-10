@@ -28,7 +28,7 @@
                     {{ session('success') }}
                 </div>
             @endif
-            <form action="{{ url('singup') }}" method="post" class="form">
+            <form action="{{ url('singup') }}" method="post" class="form registration-form">
                 @csrf
                 <div class="form-group">
                     <label for="email" class="control-label">Email</label>

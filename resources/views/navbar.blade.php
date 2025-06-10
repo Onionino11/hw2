@@ -35,8 +35,7 @@
                 <input type="hidden" name="logout" value="1">
                 <input type="submit" value="Logout" class="submit">
             </form>
-        @else
-            <form action="{{ url('login-cookie') }}" method="post" class="form" id="nav-form">
+        @else            <form action="{{ url('login-cookie') }}" method="post" class="form" id="nav-form">
                 @csrf
                 <input class="nav-input" type="text" placeholder="Email" name="email">
                 <input class="nav-input" type="password" placeholder="Password" name="password">

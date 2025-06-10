@@ -75,13 +75,16 @@ class CartController extends Controller
             return response()->json(['success' => false, 'error' => 'DB error', 'msg' => $e->getMessage()]);
         }
     }    
-      public function remove(Request $request)
+    public function remove(Request $request)
     {
         $user_id = $request->cookie('loggato');
         if (!$user_id) {
             return response()->json(['success' => false, 'error' => 'Utente non loggato']);
         }
-        $id = intval($request->input('id'));        try {
+        $id = intval($request->input('id'));
+        $remove_all = $request->input('remove_all', false);
+        
+        try {
             $carrello = DB::table('carrelli')->where('user_id', $user_id)->first();
             if (!$carrello) {
                 return response()->json(['success' => false, 'error' => 'Nessun carrello']);
@@ -91,9 +94,11 @@ class CartController extends Controller
                 ->where('carrello_id', $carrello->id)
                 ->where('prodotto_id', $id)
                 ->first();
-                
-            if ($prodotto) {
-                if ($prodotto->quantita > 1) {
+                  if ($prodotto) {
+                if ($remove_all) {
+                    // Se è richiesta la rimozione completa, eliminiamo l'elemento dal carrello
+                    DB::table('carrello_prodotti')->where('id', $prodotto->id)->delete();
+                } else if ($prodotto->quantita > 1) {
                     DB::table('carrello_prodotti')
                         ->where('id', $prodotto->id)
                         ->update(['quantita' => $prodotto->quantita - 1]);

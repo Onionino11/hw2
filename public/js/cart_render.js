@@ -77,7 +77,7 @@ function addToCartHandler(event) {
     form.style.display = 'none';
     
     const inputProdottoId = document.createElement('input');
-    inputProdottoId.name = 'prodotto_id';
+    inputProdottoId.name = 'id';
     inputProdottoId.value = prodottoId;
     form.appendChild(inputProdottoId);
     
@@ -94,11 +94,7 @@ function addToCartHandler(event) {
     }
     
     function handleData(data) {
-        if (data.success) {
-            reloadCart();
-        } else {
-            // Nessun log di errori
-        }
+        if (data.success) reloadCart();
     }
     
     function cleanupForm() {
@@ -125,7 +121,7 @@ function removeFromCartHandler(event) {
     form.style.display = 'none';
     
     const inputProdottoId = document.createElement('input');
-    inputProdottoId.name = 'prodotto_id';
+    inputProdottoId.name = 'id';
     inputProdottoId.value = prodottoId;
     form.appendChild(inputProdottoId);
     
@@ -142,11 +138,7 @@ function removeFromCartHandler(event) {
     }
     
     function handleData(data) {
-        if (data.success) {
-            reloadCart();
-        } else {
-            // Nessun log di errori
-        }
+        if (data.success) reloadCart();
     }
     
     function cleanupForm() {
@@ -168,14 +160,20 @@ function removeItemFromCartHandler(event) {
     const prodottoId = cartItem.dataset.prodotto;
     
     const form = document.createElement('form');
-    form.action = '/hw2/laravel_app/public/api/cart/delete';
+    form.action = '/hw2/laravel_app/public/api/cart/remove';
     form.method = 'post';
     form.style.display = 'none';
     
     const inputProdottoId = document.createElement('input');
-    inputProdottoId.name = 'prodotto_id';
+    inputProdottoId.name = 'id';
     inputProdottoId.value = prodottoId;
     form.appendChild(inputProdottoId);
+    
+    // Aggiungiamo il parametro remove_all per rimuovere completamente l'articolo
+    const inputRemoveAll = document.createElement('input');
+    inputRemoveAll.name = 'remove_all';
+    inputRemoveAll.value = '1';
+    form.appendChild(inputRemoveAll);
     
     const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
     const inputCsrf = document.createElement('input');
@@ -190,11 +188,7 @@ function removeItemFromCartHandler(event) {
     }
     
     function handleData(data) {
-        if (data.success) {
-            reloadCart();
-        } else {
-            // Nessun log di errori
-        }
+        if (data.success) reloadCart();
     }
     
     function cleanupForm() {

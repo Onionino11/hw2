@@ -3,7 +3,6 @@ const navigationSelect = document.getElementById('navigazione-select');
 if (navigationSelect) {
     const categoryItems = document.querySelectorAll('.tipo3');
     
-    // Nascondi inizialmente le categorie su mobile
     if (window.innerWidth <= 770) {
         for (const item of categoryItems) {
             item.classList.add('hidden');

@@ -1,5 +1,4 @@
-// language.js
-// Gestione selezione lingua
+
 
 const languageSelector = document.querySelector('#nav-flag');
 const menu = document.querySelector('#language-menu');

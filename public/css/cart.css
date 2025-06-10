@@ -4,6 +4,9 @@
     flex-direction: column;
     flex-basis: 30%;
     padding: 10px;
+    background-color: #f9f9f9;
+    border-radius: 15px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
 }
 
 #cart-collection {
@@ -13,16 +16,19 @@
     justify-content: space-between;
     background-color: white;
     font-size: 11px;
-    padding: 10px 15px;
+    padding: 15px;
     border-radius: 10px;
     margin: 10px 20px;
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.05);
 }
 
 #cart-total {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
     font-size: 18px;
-    padding: 0px 20px;
+    padding: 10px 20px;
+    border-top: 1px solid #ddd;
+    margin-top: 10px;
 }
 
 .cart-item {
@@ -30,8 +36,17 @@
     align-items: center;
     justify-content: space-between;
     border: 1px solid #ddd;
-    border-radius: 5px;
+    border-radius: 10px;
     background-color: rgb(246, 246, 246);
+    padding: 10px;
+    margin-bottom: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    transition: all 0.2s ease;
+}
+
+.cart-item:hover {
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    transform: translateY(-2px);
 }
 
 .cart-item-left {
@@ -44,6 +59,15 @@
 
 .cart-item-left-top {
     display: flex; 
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.cart-item-left-bottom {
+    font-weight: bold;
+    font-size: 14px;
+    color: #333;
+    margin-left: 5px;
 }
 
 .cart-item-btn-add {
@@ -53,28 +77,51 @@
     align-items: center;
     color: #fff;
     border: none;
-    border-radius: 3px;
+    border-radius: 6px;
+    width: 25px;
+    height: 25px;
     font-size: 16px;
+    font-weight: bold;
     cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    transition: all 0.2s ease;
 }
 
-.cart-item-btn-rm {
+.cart-item-btn-add:hover {
+    background-color: rgb(255, 140, 0);
+    transform: scale(1.1);
+}
+
+.cart-item-btn-remove {
     background-color: rgb(201, 48, 44);
     display: flex;
     justify-content: center;
     align-items: center;
     color: #fff;
     border: none;
-    border-radius: 3px;
+    border-radius: 6px;
+    width: 25px;
+    height: 25px;
     font-size: 16px;
+    font-weight: bold;
     cursor: pointer;
-    padding: 4px 7px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    transition: all 0.2s ease;
+}
+
+.cart-item-btn-remove:hover {
+    background-color: rgb(220, 53, 48);
+    transform: scale(1.1);
 }
 
 .cart-item-quantity {
     font-weight: bold;
     color: #333;
-    margin: 5px;
+    margin: 0 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 30px;
 }
 
 .cart-item-center {
@@ -98,11 +145,44 @@
     align-items: center;
 }
 
-.cart-item-price {
+.cart-item-remove {
+    background-color: rgb(201, 48, 44);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    width: 25px;
+    height: 25px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-left: 8px;
+    margin-right: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    transition: all 0.2s ease;
+}
+
+.cart-item-remove:hover {
+    background-color: rgb(220, 53, 48);
+    transform: scale(1.1);
+}
+
+.cart-item-prezzo {
     font-weight: bold;
     font-size: 14px;
     color: #333;
-    padding: 5px;
+    padding: 5px 0px;
+}
+
+.cart-item.vuoto {
+    justify-content: center;
+    padding: 20px;
+    color: #888;
+    font-style: italic;
+    text-align: center;
+    font-size: 14px;
 }
 
 #ConcludiOrdine {
@@ -112,11 +192,13 @@
     justify-content: center;
     color: white;
     border-radius: 7px;
-    padding: 8px 15px;
+    padding: 10px 18px;
     border: 0px;
-    margin: 5px;
-    font-size: 14px;
+    margin: 10px 5px;
+    font-size: 15px;
     font-weight: bold;
+    text-decoration: none;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
 #ConcludiOrdine.hidden {
@@ -126,4 +208,5 @@
 #ConcludiOrdine:hover {
     background-color: rgb(197, 105, 0);
     cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }

@@ -8,7 +8,7 @@
 <script src="{{ asset('js/language.js') }}" defer></script>
 <script src="{{ asset('js/campanella.js') }}" defer></script>
 <script src="{{ asset('js/prodotti.js') }}" defer></script>
-<script src="{{ asset('js/cart_render.js') }}" defer></script>
+@if(!View::hasSection('cart'))<script src="{{ asset('js/cart_render.js') }}" defer></script> @endif
 <script src="{{ asset('js/orari.js') }}" defer></script>
 <script src="{{ asset('js/validazione.js') }}" defer></script>
 <script src="{{ asset('js/mobile-auth.js') }}" defer></script>

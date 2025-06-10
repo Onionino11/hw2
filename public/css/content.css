@@ -125,14 +125,6 @@ section {
     flex-grow: 1;
 }
 
-.campo1 {
-    margin-right: 50px;
-    flex-basis: 67%;
-}
-
-.campo2 {
-    flex-basis: 20%;
-}
 
 .header-grigio {
     color: black;
