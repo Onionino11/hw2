@@ -45,15 +45,13 @@
                 @endif
                 <input type="submit" name="login" value="Accedi" class="submit">
             </form>
-        @endif        <a class="linknero" id="nav-flag" href="#" data-linguaattuale="Italiano">
-            <div class="flag-container"><img src="{{ asset('img/Flag_of_Italy.svg') }}"></div>
+        @endif        <a class="linknero" id="nav-flag" href="#" data-linguaattuale="Italiano">            <div class="flag-container"><img src="{{ asset('img/Flag_of_Italy.svg') }}" width="24" height="18" alt="Italiana"></div>
             <span id="nav-freccia">▼</span>
         </a>
-        <div id="language-menu" class="hidden">            <a id="Italiano" class="lingua" data-value="Italiano" href="#">
-                <div class="flag-menu-container"><img src="{{ asset('img/Flag_of_Italy.svg') }}"></div> Italiano
+        <div id="language-menu" class="hidden">            <a id="Italiano" class="lingua" data-value="Italiano" href="#">            <div class="flag-menu-container"><img src="{{ asset('img/Flag_of_Italy.svg') }}" width="20" height="16" alt="Italiano"></div> Italiano
             </a>
             <a id="English" class="lingua" data-value="English" href="#">
-                <div class="flag-menu-container"><img src="{{ asset('img/Flag_of_the_United_Kingdom.svg') }}"></div> English
+                <div class="flag-menu-container"><img src="{{ asset('img/Flag_of_the_United_Kingdom.svg') }}" width="20" height="16" alt="English"></div> English
             </a>
         </div><div id="nav-campanella2"><a href="#"><img class="icon" src="{{ asset('img/campanella.svg') }}"></a></div>        <div id="nav-profilo">
             @if($loggato)

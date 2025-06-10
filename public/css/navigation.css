@@ -34,7 +34,6 @@
     text-decoration: none;
 }
 
-/* Stili per il menu mobile */
 @media (max-width: 770px) {
     #navigazione {
         background-color: lightgray;

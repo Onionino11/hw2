@@ -1,4 +1,3 @@
-/* NAVBAR STYLES */
 nav {
     background-color: white;
     height: 52px; 
@@ -162,6 +161,7 @@ nav {
 
 .flag-container img {
     height: 100%;
+    width: auto;
     object-fit: contain;
 }
 
@@ -214,9 +214,26 @@ nav {
     margin-right: 5px;
 }
 
+.flag-menu-container img {
+    height: 100%;
+    width: auto;
+    object-fit: contain;
+}
+
 .lingua:hover {
     background-color: rgb(82, 17, 17);
     color: white;
+}
+
+@media (max-width: 770px) {
+    #language-menu {
+        right: 10px;
+    }
+    
+    .flag-container, .flag-menu-container {
+        height: 16px;
+        width: 22px;
+    }
 }
 
 .lingua.linguaattuale {

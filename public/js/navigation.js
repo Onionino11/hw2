@@ -27,15 +27,13 @@ if (navigationSelect) {
     
     navigationSelect.addEventListener('click', toggleCategoryItems);
     
-    // Gestisci il ridimensionamento della finestra
+
     window.addEventListener('resize', function() {
         if (window.innerWidth <= 770) {
-            // Su mobile, nascondi le categorie
             for (const item of categoryItems) {
                 item.classList.add('hidden');
             }
         } else {
-            // Su desktop, mostra le categorie
             for (const item of categoryItems) {
                 item.classList.remove('hidden');
             }
