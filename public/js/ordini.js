@@ -65,5 +65,4 @@ function initOrdiniPage() {
     handleOrdineDetails();
 }
 
-// Esegui direttamente la funzione poiché lo script ha l'attributo defer
 initOrdiniPage();

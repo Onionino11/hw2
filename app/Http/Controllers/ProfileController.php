@@ -8,9 +8,6 @@ use Illuminate\Support\Facades\Cookie;
 
 class ProfileController extends Controller
 {
-    /**
-     * Mostra la pagina del profilo utente
-     */
     public function index()
     {
         if (!Cookie::has('loggato')) {
@@ -24,7 +21,6 @@ class ProfileController extends Controller
             return redirect('singup');
         }
         
-        // Recupera gli ordini dell'utente
         $ordini = DB::table('ordini')
             ->where('user_id', $userId)
             ->orderBy('created_at', 'desc')

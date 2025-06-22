@@ -66,5 +66,6 @@
         border-radius: 0px;
         flex-grow: 1;
         font-weight: bold;
+        box-shadow: none
     }
 }

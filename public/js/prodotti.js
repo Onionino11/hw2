@@ -68,45 +68,38 @@ function createItem(elemento) {
     itemTitle.appendChild(itemCategory);
     itemTitle.appendChild(opzionali);
     itemDescription.appendChild(itemTitle);
-    // Mostra sempre una descrizione di default se vuota
     itemDescription.appendChild(document.createTextNode(elemento.descrizione && elemento.descrizione.trim() !== '' ? elemento.descrizione : 'Nessuna descrizione disponibile.'));
     itemBody.appendChild(itemDescription);
 
-    const itemButton = document.createElement('div');
+    const itemButton = document.createElement('a');
     itemButton.classList.add('item-button');
-
-    const prodottiLink = document.createElement('a');
-    prodottiLink.href = '#';
-    itemButton.appendChild(prodottiLink);
+    itemButton.href = '#';
 
     const prodottiText = document.createElement('strong');
     if (elemento.prodotti>0) {
         prodottiText.classList.add('N-Prodotti');
         prodottiText.textContent = elemento.prodotti + ' prodotti';
-        prodottiLink.appendChild(prodottiText);
+        itemButton.appendChild(prodottiText);
         const square = document.createElement('div');
         square.classList.add('square');
         square.textContent = '>';
         itemButton.appendChild(square);
     } else {
-        // Usa form con submit per aggiungere elementi al carrello
         prodottiText.classList.add('N-Prodotti');
         prodottiText.textContent = elemento.prezzo + '€';
         
-        // Creo un form per il bottone del prezzo
         const priceForm = document.createElement('form');
         priceForm.method = 'POST';
         priceForm.action = '/hw2/laravel_app/public/api/cart/add';
-        priceForm.style.display = 'inline';
+        priceForm.classList.add('inline-form');
         
-        // Aggiungo un campo CSRF
         const csrfField = document.createElement('input');
         csrfField.type = 'hidden';
         csrfField.name = '_token';
         csrfField.value = document.querySelector('meta[name="csrf-token"]')?.getAttribute('content') || '';
         priceForm.appendChild(csrfField);
         
-        // Aggiungo i campi con i dati del prodotto
+
         const idField = document.createElement('input');
         idField.type = 'hidden';
         idField.name = 'id';
@@ -131,42 +124,33 @@ function createItem(elemento) {
         prezzoField.value = elemento.prezzo;
         priceForm.appendChild(prezzoField);
         
-        // Bottone "invisibile" che mostra il prezzo
         const submitBtn = document.createElement('button');
         submitBtn.type = 'submit';
-        submitBtn.style.background = 'none';
-        submitBtn.style.border = 'none';
-        submitBtn.style.cursor = 'pointer';
-        submitBtn.style.padding = '0';
+        submitBtn.classList.add('text-button');
         submitBtn.appendChild(prodottiText);
         priceForm.appendChild(submitBtn);
         
-        // Aggiungo il form al link
-        prodottiLink.appendChild(priceForm);
+        itemButton.appendChild(priceForm);
         
-        // Creo un form per il bottone +
+
         const addForm = document.createElement('form');
         addForm.method = 'POST';
         addForm.action = '/hw2/laravel_app/public/api/cart/add';
-        addForm.style.display = 'inline';
-        addForm.style.marginLeft = 'auto';
+        addForm.classList.add('inline-form', 'ml-auto');
         
-        // Copio gli stessi campi nel secondo form
+
         addForm.appendChild(csrfField.cloneNode(true));
         addForm.appendChild(idField.cloneNode(true));
         addForm.appendChild(nomeField.cloneNode(true));
         addForm.appendChild(descField.cloneNode(true));
         addForm.appendChild(prezzoField.cloneNode(true));
-        
-        // Bottone +
+
         const addBtn = document.createElement('button');
         addBtn.type = 'submit';
         addBtn.className = 'square';
         addBtn.textContent = '+';
-        addBtn.style.cursor = 'pointer';
         addForm.appendChild(addBtn);
         
-        // Aggiungo l'evento submit per gestire l'aggiornamento del carrello
         const handleFormSubmit = function(e) {
             e.preventDefault();
             const form = e.currentTarget;
@@ -198,29 +182,17 @@ function createItem(elemento) {
 
     itemBody.appendChild(itemButton);
     if (elemento.nome === "MALU BURGER (SOLO PANINO)") {
-        itemButton.addEventListener('click', function() {
-            window.location.href = 'http://localhost/hw2/laravel_app/public/MALU%20BURGER%20(SOLO%20PANINO)';
-        });
+        itemButton.href = 'http://localhost/hw2/laravel_app/public/MALU%20BURGER%20(SOLO%20PANINO)';
     } else if (elemento.nome === "PER INIZIARE") {
-        itemButton.addEventListener('click', function() {
-            window.location.href = 'http://localhost/hw2/laravel_app/public/PER_INIZIARE';
-        });
+        itemButton.href = 'http://localhost/hw2/laravel_app/public/PER_INIZIARE';
     } else if (elemento.nome === "MALU PROMO MENU'") {
-        itemButton.addEventListener('click', function() {
-            window.location.href = 'http://localhost/hw2/laravel_app/public/MALU%20PROMO%20MENU';
-        });
+        itemButton.href = 'http://localhost/hw2/laravel_app/public/MALU%20PROMO%20MENU';
     } else if (elemento.nome === "MALU LIGHT") {
-        itemButton.addEventListener('click', function() {
-            window.location.href = 'http://localhost/hw2/laravel_app/public/MALU%20LIGHT';
-        });
+        itemButton.href = 'http://localhost/hw2/laravel_app/public/MALU%20LIGHT';
     } else if (elemento.nome === "DA BERE") {
-        itemButton.addEventListener('click', function() {
-            window.location.href = 'http://localhost/hw2/laravel_app/public/BEVANDE';
-        });
+        itemButton.href = 'http://localhost/hw2/laravel_app/public/BEVANDE';
     } else if (elemento.nome === "DOLCI") {
-        itemButton.addEventListener('click', function() {
-            window.location.href = 'http://localhost/hw2/laravel_app/public/DOLCI';
-        });
+        itemButton.href = 'http://localhost/hw2/laravel_app/public/DOLCI';
     }
     panelItem.appendChild(itemBody);
     return panelItem;
@@ -286,14 +258,13 @@ function onJsonItems(data) {
     const Results = data.results || [];
     for (const item of Results) {
         let element;
-        // Controllo se i campi sono vuoti o nulli e applico fallback
         const nome = item.nome && item.nome.trim() !== '' ? item.nome : 'Sconosciuto';
         const descrizione = item.descrizione && item.descrizione.trim() !== '' ? item.descrizione : 'Nessuna descrizione disponibile.';
         let immagine = item.immagine && item.immagine.trim() !== '' ? item.immagine : 'default.png';
         if (immagine && !immagine.startsWith('http') && !immagine.endsWith('.png') && !immagine.endsWith('.jpg') && !immagine.endsWith('.jpeg')) {
             immagine = 'default.png';
         }
-        // Modifica: considera prodotto DB se c'è item.nome (non richiede descrizione)
+
         if (item.nome) {
             element = {
                 prodotto: item.id || 0,
@@ -306,20 +277,6 @@ function onJsonItems(data) {
                 burger: item.burger || false,
                 chips: item.chips || false,
                 drink: item.drink || false
-            };
-        } else {
-            // Risposta Spoonacular
-            element = {
-                prodotto: item.id || 0,
-                immagine: item.image || 'default.png',
-                nome: item.title || 'Sconosciuto',
-                descrizione: item.summary ? item.summary.replace(/<[^>]+>/g, '') : 'Nessuna descrizione disponibile.',
-                prodotti: 0,
-                prezzo: getRandomFloat(5, 20),
-                bestseller: false,
-                burger: false,
-                chips: false,
-                drink: false
             };
         }
         const panelItem = createItem(element);
@@ -335,8 +292,4 @@ function hideItemsCategoria() {
             item.classList.add('hidden');
         }
     }
-}
-
-function getRandomFloat(min, max) {
-    return ((Math.random() * (max - min) + min).toFixed(1)+'0');
 }

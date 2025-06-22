@@ -28,16 +28,10 @@ function initMobileAuth() {
         }
     }
     
-    function handleKeyDown(e) {
-        if (e.key === 'Escape' && !mobileAuthModal.classList.contains('hidden')) {
-            closeModal();
-        }
-    }
     
     mobileAuthBtn.addEventListener('click', handleBtnClick);
     mobileAuthClose.addEventListener('click', closeModal);
     mobileAuthModal.addEventListener('click', handleModalClick);
-    document.addEventListener('keydown', handleKeyDown);
 }
 
 initMobileAuth();

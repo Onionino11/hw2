@@ -169,7 +169,6 @@ function removeItemFromCartHandler(event) {
     inputProdottoId.value = prodottoId;
     form.appendChild(inputProdottoId);
     
-    // Aggiungiamo il parametro remove_all per rimuovere completamente l'articolo
     const inputRemoveAll = document.createElement('input');
     inputRemoveAll.name = 'remove_all';
     inputRemoveAll.value = '1';

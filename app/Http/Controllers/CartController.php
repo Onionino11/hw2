@@ -37,7 +37,8 @@ class CartController extends Controller
         $id = intval($request->input('id'));
         $nome = $request->input('nome', '');
         $descrizione = $request->input('descrizione', '');
-        $prezzo = floatval($request->input('prezzo', 0.0));        try {
+        $prezzo = floatval($request->input('prezzo', 0.0));        
+        try {
             $carrello = DB::table('carrelli')->where('user_id', $user_id)->first();
             if (!$carrello) {
                 $carrello_id = DB::table('carrelli')->insertGetId(['user_id' => $user_id, 'totale' => 0.00]);
@@ -72,7 +73,7 @@ class CartController extends Controller
             
             return response()->json(['success' => true]);
         } catch (\Exception $e) {
-            return response()->json(['success' => false, 'error' => 'DB error', 'msg' => $e->getMessage()]);
+            return json_encode(['success' => false, 'error' => 'DB error', 'msg' => $e->getMessage()]);
         }
     }    
     public function remove(Request $request)
@@ -96,7 +97,6 @@ class CartController extends Controller
                 ->first();
                   if ($prodotto) {
                 if ($remove_all) {
-                    // Se è richiesta la rimozione completa, eliminiamo l'elemento dal carrello
                     DB::table('carrello_prodotti')->where('id', $prodotto->id)->delete();
                 } else if ($prodotto->quantita > 1) {
                     DB::table('carrello_prodotti')

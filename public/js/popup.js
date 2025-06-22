@@ -18,13 +18,15 @@ function showPopup() {
     banneroffertTitle.classList.add('popup-title');
     const closeButton = document.createElement('button');
     closeButton.classList.add('close-button');
-    const closeIcon = document.createElement('img');
-    closeIcon.src = 'img/xbianca.svg';
+    const closeIcon = document.createElement('img');    
+    closeIcon.src = '/hw2/laravel_app/public/img/xbianca.svg';
     closeIcon.classList.add('close-icon');
     closeButton.appendChild(closeIcon);
+    
     function handleCloseClick() {
         removePopup(banneroffert);
     }
+
     closeButton.addEventListener('click', handleCloseClick);
     banneroffertTitle.appendChild(closeButton);
     banneroffert.appendChild(banneroffertTitle);    const offerte = data.offerte;

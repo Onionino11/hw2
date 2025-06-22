@@ -16,4 +16,3 @@ function processData(data) {
 fetch('http://localhost/hw2/laravel_app/public/db/' + encodeURIComponent(categoria) + '/' + number)
     .then(handleResponse)
     .then(processData)
-    .catch(handleError);

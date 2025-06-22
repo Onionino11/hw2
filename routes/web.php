@@ -92,3 +92,5 @@ Route::get('/profilo', [ProfileController::class, 'index'])->name('profilo');
 
 Route::get('/ordini', [OrderController::class, 'index'])->name('ordini');
 Route::get('/ordini/{id}', [OrderController::class, 'show'])->name('ordini.show');
+Route::get('/api/ordini', [OrderController::class, 'getOrdini']);
+Route::get('/api/ordini/{id}', [OrderController::class, 'getOrdine']);

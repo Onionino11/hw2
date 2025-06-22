@@ -91,9 +91,10 @@
                     <div class="signup-accept-marketing">
                         <div>
                             <p>Acconsento al trattamento dei miei dati personali per:</p>
-                            <input type="hidden" name="accept_marketing" value="0">                            <div class="checkbox">
+                            <input type="hidden" name="accept_marketing" value="0">                            
+                            <div class="checkbox">
                                 <label>
-                                    <input type="checkbox" name="accept_marketing" value="1" {{ old('accept_marketing') ? 'checked' : '' }}> Ricevere sconti esclusivi, novità ed offerte
+                                    <input type="checkbox" name="accept_marketing" value="1" > Ricevere sconti esclusivi, novità ed offerte
                                 </label>
                             </div>
                             <p>Registrandoti accetti la nostra <a href="#">politica sulla privacy</a> e prendi visione dell'informativa sul <a href="#">trattamento dei dati personali</a> di Maluburger</p>

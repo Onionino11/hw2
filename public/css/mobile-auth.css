@@ -101,6 +101,7 @@
 .mobile-btn-primary {
     background-color: rgb(238, 127, 1);
     color: white;
+    flex-grow: 1;
 }
 
 .mobile-btn-secondary {

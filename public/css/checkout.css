@@ -28,11 +28,13 @@
 
 .checkout-row {
     display: flex;
-    gap: 16px;
+    margin: 0 -8px;
 }
 
-.checkout-row>div {
-    flex: 1;
+.checkout-col {
+    flex-grow: 1;
+    flex-shrink: 1;
+    padding: 0 8px;
 }
 
 .checkout-input,
@@ -46,14 +48,18 @@
 
 .checkout-radio-group {
     display: flex;
-    gap: 16px;
+    margin: 0 -8px;
     margin-bottom: 12px;
 }
 
 .checkout-radio {
     display: flex;
     align-items: center;
-    gap: 6px;
+    padding: 0 8px;
+}
+
+.checkout-radio input {
+    margin-right: 6px;
 }
 
 .checkout-summary {
@@ -65,7 +71,7 @@
 
 .checkout-summary h3 {
     margin: 0 0 10px 0;
-    font-size: 1.1em;
+    font-size: 12px;
 }
 
 .checkout-summary ul {

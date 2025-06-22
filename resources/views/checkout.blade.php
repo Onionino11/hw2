@@ -56,24 +56,29 @@ $totale = $totale ?? 0;
                         <div class="controls">
                             <textarea name="note" class="form-control" placeholder="Eventuali note da allegare all'ordine.">{{ old('note', '') }}</textarea>
                         </div>
-                    </div><div class="form-group">
-                        <label for="first_name" class="control-label">Nome</label>
-                        <div class="controls">
-                            <input type="text" name="first_name" class="form-control" placeholder="Nome" value="{{ old('first_name', $first_name ?? '') }}" required>
+                    </div>
+                    
+                    <div class="checkout-row">
+                        <div class="checkout-col">
+                            <label for="first_name" class="control-label">Nome</label>
+                            <div class="controls">
+                                <input type="text" name="first_name" class="form-control" placeholder="Nome" value="{{ old('first_name', $first_name ?? '') }}" required>
+                            </div>
+                        </div>
+                        <div class="checkout-col">
+                            <label for="last_name" class="control-label">Cognome</label>
+                            <div class="controls">
+                                <input type="text" name="last_name" class="form-control" placeholder="Cognome" value="{{ old('last_name', $last_name ?? '') }}" required>
+                            </div>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label for="last_name" class="control-label">Cognome</label>
-                        <div class="controls">
-                            <input type="text" name="last_name" class="form-control" placeholder="Cognome" value="{{ old('last_name', $last_name ?? '') }}" required>
-                        </div>
-                    </div>
+                    
                     <div class="form-group">
                         <label for="phone" class="control-label">Telefono</label>
                         <div class="controls">
                             <input type="text" name="phone" class="form-control" placeholder="Telefono" value="{{ old('phone', $phone ?? '') }}" required>
                         </div>
-                    </div>                    <div class="form-group">
+                    </div><div class="form-group">
                         <label class="control-label">Metodo di consegna</label>
                         <div class="controls">
                             <label><input type="radio" name="consegna" value="ritiro" {{ old('consegna', 'ritiro') == 'ritiro' ? 'checked' : '' }}> Ritiro presso Maluburger</label>
