@@ -96,6 +96,13 @@ section {
     color: rgb(238, 127, 1);
 }
 
+.text-button {
+    text-decoration: none;
+    border: none;
+    font-weight: bold;
+    background-color: transparent;
+}
+
 .item-button:hover {
     text-decoration: underline;
 }
