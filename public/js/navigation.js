@@ -1,41 +1,18 @@
 const navigationSelect = document.getElementById('navigazione-select');
 
 if (navigationSelect) {
-    const categoryItems = document.querySelectorAll('.tipo3');
-    
-    if (window.innerWidth <= 770) {
+    const categoryItems = document.querySelectorAll('.tipo3');    function toggleCategoryItems() {
+        const firstItem = categoryItems[0];
+        const isShown = firstItem.classList.contains('show');
+        
         for (const item of categoryItems) {
-            item.classList.add('hidden');
-        }
-    }
-    
-    function toggleCategoryItems() {
-        if (window.innerWidth <= 770) {
-            const firstItem = categoryItems[0];
-            const isHidden = firstItem.classList.contains('hidden');
-              for (const item of categoryItems) {
-                if (isHidden) {
-                    item.classList.remove('hidden');
-                } else {
-                    item.classList.add('hidden');
-                }
+            if (isShown) {
+                item.classList.remove('show');
+            } else {
+                item.classList.add('show');
             }
-  
         }
     }
     
     navigationSelect.addEventListener('click', toggleCategoryItems);
-    
-
-    window.addEventListener('resize', function() {
-        if (window.innerWidth <= 770) {
-            for (const item of categoryItems) {
-                item.classList.add('hidden');
-            }
-        } else {
-            for (const item of categoryItems) {
-                item.classList.remove('hidden');
-            }
-        }
-    });
 }

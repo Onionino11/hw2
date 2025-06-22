@@ -6,7 +6,7 @@ function renderCart(cartData) {
     let totale = 0;
     if (!cartData || !Array.isArray(cartData.items) || cartData.items.length === 0) {
         const vuotoDiv = document.createElement('div');
-        vuotoDiv.className = 'cart-item vuoto';
+        vuotoDiv.classList.add('cart-item', 'vuoto');
         vuotoDiv.textContent = 'Il carrello è vuoto';
         cartCollection.appendChild(vuotoDiv);
         document.getElementById('totale').textContent = '0,00 €';
@@ -19,45 +19,45 @@ function renderCart(cartData) {
     for (const item of cartData.items) {
         totale += item.prezzo * item.quantita;
         const cartItem = document.createElement('div');
-        cartItem.className = 'cart-item';
+        cartItem.classList.add('cart-item');
         cartItem.dataset.prodotto = item.prodotto_id;
         const left = document.createElement('div');
-        left.className = 'cart-item-left';
+        left.classList.add('cart-item-left');
         const leftTop = document.createElement('div');
-        leftTop.className = 'cart-item-left-top';
+        leftTop.classList.add('cart-item-left-top');
         const btnAdd = document.createElement('button');
-        btnAdd.className = 'cart-item-btn-add';
+        btnAdd.classList.add('cart-item-btn-add');
         btnAdd.textContent = '+';
         btnAdd.onclick = addToCartHandler;
         leftTop.appendChild(btnAdd);
         const qtyDiv = document.createElement('div');
-        qtyDiv.className = 'cart-item-quantity';
+        qtyDiv.classList.add('cart-item-quantity');
         const qtySpan = document.createElement('span');
         qtySpan.textContent = item.quantita;
         qtyDiv.appendChild(qtySpan);
         qtyDiv.appendChild(document.createTextNode('x'));
         leftTop.appendChild(qtyDiv);
         const btnRemove = document.createElement('button');
-        btnRemove.className = 'cart-item-btn-remove';
+        btnRemove.classList.add('cart-item-btn-remove');
         btnRemove.textContent = '-';
         btnRemove.onclick = removeFromCartHandler;
         leftTop.appendChild(btnRemove);
         left.appendChild(leftTop);
         const leftBottom = document.createElement('div');
-        leftBottom.className = 'cart-item-left-bottom';
+        leftBottom.classList.add('cart-item-left-bottom');
         leftBottom.textContent = item.nome;
         left.appendChild(leftBottom);
         cartItem.appendChild(left);
         const right = document.createElement('div');
-        right.className = 'cart-item-right';
+        right.classList.add('cart-item-right');
         const prezzo = document.createElement('div');
-        prezzo.className = 'cart-item-prezzo';
+        prezzo.classList.add('cart-item-prezzo');
         const prezzoValue = parseFloat(item.prezzo);
         prezzo.textContent = prezzoValue.toFixed(2).replace('.', ',') + ' €';
         right.appendChild(prezzo);
         const remove = document.createElement('button');
-        remove.className = 'cart-item-remove';
-        remove.innerHTML = '&times;';
+        remove.classList.add('cart-item-remove');
+        remove.textContent = 'x';
         remove.onclick = removeItemFromCartHandler;
         right.appendChild(remove);
         cartItem.appendChild(right);
@@ -74,7 +74,7 @@ function addToCartHandler(event) {
     const form = document.createElement('form');
     form.action = '/hw2/laravel_app/public/api/cart/add';
     form.method = 'post';
-    form.style.display = 'none';
+    form.classList.add('hidden-form');
     
     const inputProdottoId = document.createElement('input');
     inputProdottoId.name = 'id';
@@ -118,7 +118,7 @@ function removeFromCartHandler(event) {
     const form = document.createElement('form');
     form.action = '/hw2/laravel_app/public/api/cart/remove';
     form.method = 'post';
-    form.style.display = 'none';
+    form.classList.add('hidden-form');
     
     const inputProdottoId = document.createElement('input');
     inputProdottoId.name = 'id';
@@ -162,7 +162,7 @@ function removeItemFromCartHandler(event) {
     const form = document.createElement('form');
     form.action = '/hw2/laravel_app/public/api/cart/remove';
     form.method = 'post';
-    form.style.display = 'none';
+    form.classList.add('hidden-form');
     
     const inputProdottoId = document.createElement('input');
     inputProdottoId.name = 'id';

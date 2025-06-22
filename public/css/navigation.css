@@ -15,8 +15,8 @@
     margin: 0px 10px;
 }
 
-.tipo3.hidden {
-    display: none;
+.tipo3.show {
+    display: block;
 }
 
 .tipo3:hover {

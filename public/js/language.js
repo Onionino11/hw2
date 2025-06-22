@@ -1,5 +1,3 @@
-
-
 const languageSelector = document.querySelector('#nav-flag');
 const menu = document.querySelector('#language-menu');
 function displayLanguageMenu() {
@@ -28,7 +26,8 @@ function preventDefault(event){
 }
 
 let linguaAttuale = languageSelector.dataset.linguaattuale;
-function setLinguaAttuale() {    if (linguaAttuale === 'Italiano') {
+function setLinguaAttuale() {    
+    if (linguaAttuale === 'Italiano') {
         let linguaAttiva = menu.querySelector('#Italiano');
         linguaAttiva.classList.add('linguaattuale');
         languageSelector.querySelector('img').src = '/hw2/laravel_app/public/img/Flag_of_Italy.svg';

@@ -322,7 +322,7 @@ function showNotification(message, type = 'error') {
     }
     
 
-    notification.className = 'notification ' + type;
+    notification.classList.add(type);
     notification.textContent = message;
     
 

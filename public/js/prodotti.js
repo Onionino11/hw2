@@ -147,7 +147,7 @@ function createItem(elemento) {
 
         const addBtn = document.createElement('button');
         addBtn.type = 'submit';
-        addBtn.className = 'square';
+        addBtn.classList.add('square');
         addBtn.textContent = '+';
         addForm.appendChild(addBtn);
         
