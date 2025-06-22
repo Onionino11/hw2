@@ -38,15 +38,12 @@
             <h3>Prodotti ordinati</h3>
             <div class="prodotti-list">
                 @foreach($prodotti as $prodotto)
-                <div class="prodotto-item">                    <div class="prodotto-image">
+                <div class="prodotto-item">                    
+                    <div class="prodotto-image">
                         @if($prodotto->immagine)
-                            @if(strpos($prodotto->immagine, 'http') === 0)
-                                <img src="{{ $prodotto->immagine }}" alt="{{ $prodotto->nome }}">
-                            @else
-                                <img src="{{ asset('img/prodotti/' . $prodotto->immagine) }}" alt="{{ $prodotto->nome }}">
-                            @endif
+                            <img src="{{ $prodotto->immagine }}" alt="{{ $prodotto->nome }}">
                         @else
-                            <div class="no-image">{{ substr($prodotto->nome, 0, 1) }}</div>
+                            <div class="no-image">?</div>
                         @endif
                     </div>
                     <div class="prodotto-info">

@@ -26,16 +26,6 @@
     font-weight: 600;
 }
 
-.checkout-row {
-    display: flex;
-    margin: 0 -8px;
-}
-
-.checkout-col {
-    flex-grow: 1;
-    flex-shrink: 1;
-    padding: 0 8px;
-}
 
 .checkout-input,
 .checkout-select {
@@ -145,6 +135,23 @@
     justify-content: space-between;
     margin-bottom: 10px;
     padding: 5px 0;
+}
+
+.ordine-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    padding: 5px 0 5px 20px;
+    border-bottom: 1px solid #c8e6c9;
+    position: relative;
+}
+
+.ordine-item:last-child {
+    border-bottom: none;
+}
+
+#totale-dinamico {
+    font-weight: bold;
 }
 
 .ordine-totale {

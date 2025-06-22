@@ -9,17 +9,19 @@ class CheckoutController extends Controller
 {    public function index(Request $request)
     {
         $user_id = $request->cookie('loggato');
-        $userData = [];
+        $userData = [
+            'ordine_inviato' => false,
+            'errore_ordine' => session('error') ?? '',
+            'riepilogo' => [],
+            'totale' => 0
+        ];
         
         if ($user_id) {
-
             $user = DB::table('users')->where('id', $user_id)->first();
             if ($user) {
-                $userData = [
-                    'first_name' => $user->first_name,
-                    'last_name' => $user->last_name,
-                    'phone' => $user->phone
-                ];
+                $userData['first_name'] = $user->first_name;
+                $userData['last_name'] = $user->last_name;
+                $userData['phone'] = $user->phone;
             }
         }
         
