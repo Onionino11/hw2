@@ -1,5 +1,3 @@
-{{-- I dati utente ora vengono passati direttamente dal controller --}}
-
 @extends('layouts.app')
 
 @section('title', 'Il tuo profilo')

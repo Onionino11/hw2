@@ -10,12 +10,10 @@ function onJsonOrariGiornalieri(data) {
         const openingHours = place.tags.opening_hours; 
         const phone = place.tags.phone;
         const website = place.tags.website;
-        console.log('Orari di apertura:', openingHours);
         const giorniSettimana = [ 'Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'];
         const oggi = new Date().getDay();
         const giornoCorrente = giorniSettimana[oggi]; 
         const orariArray= parseOpeningHours(openingHours);
-        console.log(orariArray);
         for (const orario of orariArray) {
             if (orario.giorno.trim() === giornoCorrente.trim()) {
                 orarioOggi = orario.orario;

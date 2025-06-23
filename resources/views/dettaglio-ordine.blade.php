@@ -10,7 +10,8 @@
     <img class="panel-icon icon" src="{{ asset('img/ordini.svg') }}"> Dettaglio Ordine #{{ $ordine->id }}
 @endsection
 
-@section('content')    <div class="dettaglio-ordine-container">
+@section('content')    
+    <div class="dettaglio-ordine-container">
         <div class="dettaglio-header">
             <div class="back-link">
                 <a href="{{ route('ordini') }}">

@@ -1,4 +1,3 @@
-{{-- Navbar Blade --}}
 @php
     $loggato = Cookie::get('loggato');
 @endphp

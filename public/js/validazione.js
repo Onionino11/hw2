@@ -3,6 +3,7 @@ function validazione(event) {
     let password = null;
     let confirmPassword = null;
     const form = event.target;
+    const errori = document.querySelector('#errori');
     let passwordField = null;
     for (let i = 0; i < form.elements.length; i++) {
         const field = form.elements[i];
@@ -18,30 +19,29 @@ function validazione(event) {
             var missingField = field;
             break;
         }
-    }
-    if (password !== null) {
+    }    if (password !== null) {
         if (password.length < 8) {
-            alert("La password deve essere lunga almeno 8 caratteri.");
+            errori.textContent = "La password deve essere lunga almeno 8 caratteri.";
             event.preventDefault();
             return;
         }
         if (!/[A-Z]/.test(password)) {
-            alert("La password deve contenere almeno una lettera maiuscola.");
+            errori.textContent = "La password deve contenere almeno una lettera maiuscola.";
             event.preventDefault();
             return;
         }
         if (!/[a-z]/.test(password)) {
-            alert("La password deve contenere almeno una lettera minuscola.");
+            errori.textContent = "La password deve contenere almeno una lettera minuscola.";
             event.preventDefault();
             return;
         }
         if (!/[0-9]/.test(password)) {
-            alert("La password deve contenere almeno un numero.");
+            errori.textContent = "La password deve contenere almeno un numero.";
             event.preventDefault();
             return;
         }
         if (!/[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]/.test(password)) {
-            alert("La password deve contenere almeno un simbolo.");
+            errori.textContent = "La password deve contenere almeno un simbolo.";
             event.preventDefault();
             return;
         }
@@ -60,12 +60,12 @@ function validazione(event) {
             case 'phone': label = 'Telefono'; break;
             default: label = label.charAt(0).toUpperCase() + label.slice(1);
         }
-        alert("Compilare il campo: " + label);
+        errori.textContent = "Compilare il campo: " + label;
         event.preventDefault();
         return;
     }
     if (password !== null && confirmPassword !== null && password !== confirmPassword) {
-        alert("Le password non coincidono.");
+        errori.textContent = "Le password non coincidono.";
         event.preventDefault();
         return;
     }
