@@ -145,3 +145,8 @@ section {
     margin-top: -15px;
     color: gray;
 }
+
+#errori{
+    display: flex;
+    color:red;
+}

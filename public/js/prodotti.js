@@ -169,7 +169,7 @@ function createItem(elemento) {
                         reloadCart();
                     }
                 } else {
-                    console.error('Errore:', data.error);
+                    document.querySelector('#errori').textContent="Effettuare il login per aggiungere un prodotto al carrello";
                 }
             });
         };

@@ -70,3 +70,9 @@ function showPopup() {
     promoScopri.removeEventListener('click', showPopup);
 }
 promoScopri.addEventListener('click', showPopup);
+
+errori=document.querySelector('#errori');
+document.body.addEventListener('click', svuotaErrori);
+function svuotaErrori() {
+    errori.textContent = '';
+}

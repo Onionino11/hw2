@@ -12,7 +12,7 @@
     @include('navbar')
     @include('header_section')
     @include('navigazione')
-    
+    <h2 id=errori> </h2>
     <article>
         <section id="panel">
             <div id="panel-heading">
