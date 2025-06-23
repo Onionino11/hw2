@@ -5,7 +5,7 @@
             <p class="info-restaurant">Via degli Studi, 14 <br>
                 95047 Paternò (CT) - Italy <br>
                 Tel. <span id="telefono">Caricamento...</span> - <a href="#">info@maluburger.it</a> <br>
-                <a id="sito" href="#""> Caricamento...</a> <br>
+                <a id="sito" href="{{route('home')}}"> Caricamento...</a> <br>
                 P.IVA 05148180879
             </p>
         </div>

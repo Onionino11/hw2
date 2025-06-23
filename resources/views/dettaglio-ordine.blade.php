@@ -74,11 +74,8 @@
                     <span class="totale-label">Totale:</span>
                     <span class="totale-value">€{{ number_format($ordine->totale, 2, ',', '.') }}</span>
                 </div>
-            </div>        </div>
-          <div class="dettaglio-actions">
-            <div class="feature-coming-soon">
-                La funzione di stampa ricevuta sarà disponibile prossimamente
-            </div>
+            </div>        
         </div>
+
     </div>
 @endsection
