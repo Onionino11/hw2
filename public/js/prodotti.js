@@ -254,7 +254,6 @@ function onError(error) {
 }
 
 function onJsonItems(data) {
-    // console.log('Risultato della fetch:', data);
     const Results = data.results || [];
     for (const item of Results) {
         let element;
