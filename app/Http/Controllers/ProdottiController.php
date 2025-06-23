@@ -21,7 +21,7 @@ class ProdottiController extends Controller
         ];
 
         if (!array_key_exists($categoria, $map)) {
-            return response()->json(['error' => 'Categoria non trovata'], 400);
+            return json_encode(['error' => 'Categoria non trovata'], 400);
         }
         $cat = $map[$categoria];
         $prodotti = DB::table('prodotti')
@@ -29,26 +29,26 @@ class ProdottiController extends Controller
             ->orderBy('id', 'asc')
             ->get();
 
-        return response()->json(['results' => $prodotti]);
+        return json_encode(['results' => $prodotti]);
     }
 
-    public function api($categoria, $numero = 10)
-    {
-        $query = $categoria;
-        $number = $numero;
-        $apiKey = '9dde7ae366c84c1d943b6f3567ff7f2b';
-        $url = "https://api.spoonacular.com/recipes/complexSearch?query=$query&number=$number&apiKey=$apiKey";
+    // public function api($categoria, $numero = 10)
+    // {
+    //     $query = $categoria;
+    //     $number = $numero;
+    //     $apiKey = '9dde7ae366c84c1d943b6f3567ff7f2b';
+    //     $url = "https://api.spoonacular.com/recipes/complexSearch?query=$query&number=$number&apiKey=$apiKey";
 
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, $url);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-        $result = curl_exec($ch);
-        if (curl_errno($ch)) {
-            http_response_code(500);
-            curl_close($ch);
-            return response()->json(['error' => 'Errore nella richiesta: ' . curl_error($ch)], 500);
-        }
-        curl_close($ch);
-        return response($result, 200)->header('Content-Type', 'application/json');
-    }
+    //     $ch = curl_init();
+    //     curl_setopt($ch, CURLOPT_URL, $url);
+    //     curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+    //     $result = curl_exec($ch);
+    //     if (curl_errno($ch)) {
+    //         http_response_code(500);
+    //         curl_close($ch);
+    //         return json_encode(['error' => 'Errore nella richiesta: ' . curl_error($ch)], 500);
+    //     }
+    //     curl_close($ch);
+    //     return response($result, 200)->header('Content-Type', 'application/json');
+    // }
 }

@@ -9,7 +9,7 @@ class CategoriaController extends Controller
     public function loadCategorie()
     {
         $categorie = DB::table('categoria')->get();
-        return response()->json($categorie);
+        return json_encode($categorie);
     }
 
 }

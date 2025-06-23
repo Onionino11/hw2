@@ -1,5 +1,7 @@
 const riepilogoContainer = document.getElementById('riepilogo-dinamico');
 const totaleSpan = document.getElementById('totale-dinamico');
+const riepilogoData = $riepilogo;
+const totaleDinamico = $totale ?? 0 ;
 
 if (!riepilogoContainer || !totaleSpan) throw new Error('Elementi del riepilogo non trovati');
 
@@ -8,11 +10,11 @@ function formatCurrency(number) {
 }
 
 function renderRiepilogo() {
-    if (Array.isArray(riepilogoData) && riepilogoData.length > 0) {        riepilogoData.forEach(item => {
+    if ( riepilogoData.length > 0) {        
+        for (const item of riepilogoData) {
             const itemDiv = document.createElement('div');
             itemDiv.classList.add('ordine-item');
             
-            // Aggiungi punto elenco
             const bulletPoint = document.createTextNode('• ');
             itemDiv.appendChild(bulletPoint);
             
@@ -26,7 +28,7 @@ function renderRiepilogo() {
             itemDiv.appendChild(price);
             
             riepilogoContainer.appendChild(itemDiv);
-        });
+        }
     } else {
         const emptyDiv = document.createElement('div');
         emptyDiv.textContent = 'Nessun prodotto nel riepilogo';

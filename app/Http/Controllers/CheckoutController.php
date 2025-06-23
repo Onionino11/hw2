@@ -61,10 +61,9 @@ class CheckoutController extends Controller
                 ->where('carrello_id', $carrello_id)
                 ->get()
                 ->toArray();
-            
-            $totale = 0;
-            foreach ($items as $item) {
-                $totale += $item->prezzo * $item->quantita;
+              $totale = 0;
+            for ($i = 0; $i < count($items); $i++) {
+                $totale += $items[$i]->prezzo * $items[$i]->quantita;
             }
             
 
@@ -83,16 +82,15 @@ class CheckoutController extends Controller
                 'consegna' => $request->input('consegna'),
                 'pagamento' => $request->input('pagamento'),
                 'created_at' => now(),
-                'updated_at' => now(),
-            ]);
+                'updated_at' => now(),            ]);
             
-            foreach ($items as $item) {
+            for ($i = 0; $i < count($items); $i++) {
                 DB::table('ordini_prodotti')->insert([
                     'ordine_id' => $ordine_id,
-                    'prodotto_id' => $item->prodotto_id,
-                    'nome' => $item->nome,
-                    'prezzo' => $item->prezzo,
-                    'quantita' => $item->quantita,
+                    'prodotto_id' => $items[$i]->prodotto_id,
+                    'nome' => $items[$i]->nome,
+                    'prezzo' => $items[$i]->prezzo,
+                    'quantita' => $items[$i]->quantita,
                     'created_at' => now(),
                     'updated_at' => now(),
                 ]);

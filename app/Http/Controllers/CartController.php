@@ -10,7 +10,7 @@ class CartController extends Controller
     {
         $user_id = $request->cookie('loggato');
         if (!$user_id) {
-            return response()->json(['success' => false, 'error' => 'Utente non loggato']);
+            return json_encode(['success' => false, 'error' => 'Utente non loggato']);
         }
         try {
             $carrello = DB::table('carrelli')->where('user_id', $user_id)->first();
@@ -18,20 +18,18 @@ class CartController extends Controller
             if ($carrello) {
                 $items = DB::table('carrello_prodotti')
                     ->where('carrello_id', $carrello->id)
-                    ->select('prodotto_id', 'nome', 'descrizione', 'prezzo', 'quantita')
-                    ->get();
+                    ->select('prodotto_id', 'nome', 'descrizione', 'prezzo', 'quantita')                    ->get();
             }
-            return response()->json(['success' => true, 'items' => $items]);
+            return json_encode(['success' => true, 'items' => $items]);
         } catch (\Exception $e) {
-            return response()->json(['success' => false, 'error' => 'DB error', 'msg' => $e->getMessage()]);
+            return json_encode(['success' => false, 'error' => 'DB error', 'msg' => $e->getMessage()]);
         }
     }
-    
-    public function add(Request $request)
+      public function add(Request $request)
     {
         $user_id = $request->cookie('loggato');
         if (!$user_id) {
-            return response()->json(['success' => false, 'error' => 'Utente non loggato']);
+            return json_encode(['success' => false, 'error' => 'Utente non loggato']);
         }
         
         $id = intval($request->input('id'));
@@ -68,27 +66,24 @@ class CartController extends Controller
             $totale = DB::table('carrello_prodotti')
                 ->where('carrello_id', $carrello_id)
                 ->select(DB::raw('SUM(prezzo * quantita) as totale'))
-                ->first()->totale ?? 0.00;
-            DB::table('carrelli')->where('id', $carrello_id)->update(['totale' => $totale]);
+                ->first()->totale ?? 0.00;            DB::table('carrelli')->where('id', $carrello_id)->update(['totale' => $totale]);
             
-            return response()->json(['success' => true]);
+            return json_encode(['success' => true]);
         } catch (\Exception $e) {
             return json_encode(['success' => false, 'error' => 'DB error', 'msg' => $e->getMessage()]);
         }
-    }    
-    public function remove(Request $request)
+    }      public function remove(Request $request)
     {
         $user_id = $request->cookie('loggato');
         if (!$user_id) {
-            return response()->json(['success' => false, 'error' => 'Utente non loggato']);
+            return json_encode(['success' => false, 'error' => 'Utente non loggato']);
         }
         $id = intval($request->input('id'));
         $remove_all = $request->input('remove_all', false);
         
-        try {
-            $carrello = DB::table('carrelli')->where('user_id', $user_id)->first();
+        try {            $carrello = DB::table('carrelli')->where('user_id', $user_id)->first();
             if (!$carrello) {
-                return response()->json(['success' => false, 'error' => 'Nessun carrello']);
+                return json_encode(['success' => false, 'error' => 'Nessun carrello']);
             }
             
             $prodotto = DB::table('carrello_prodotti')
@@ -110,12 +105,10 @@ class CartController extends Controller
             $totale = DB::table('carrello_prodotti')
                 ->where('carrello_id', $carrello->id)
                 ->select(DB::raw('SUM(prezzo * quantita) as totale'))
-                ->first()->totale ?? 0.00;
-            DB::table('carrelli')->where('id', $carrello->id)->update(['totale' => $totale]);
-            
-            return response()->json(['success' => true]);
+                ->first()->totale ?? 0.00;            DB::table('carrelli')->where('id', $carrello->id)->update(['totale' => $totale]);
+              return json_encode(['success' => true]);
         } catch (\Exception $e) {
-            return response()->json(['success' => false, 'error' => 'DB error', 'msg' => $e->getMessage()]);
+            return json_encode(['success' => false, 'error' => 'DB error', 'msg' => $e->getMessage()]);
         }
     }
 }
