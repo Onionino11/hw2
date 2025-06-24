@@ -312,25 +312,3 @@ function formatNumber(number) {
 
 
 
-function showNotification(message, type = 'error') {
-
-    let notification = document.querySelector('.notification');
-    if (!notification) {
-        notification = document.createElement('div');
-        notification.classList.add('notification');
-        document.body.appendChild(notification);
-    }
-    
-
-    notification.classList.add(type);
-    notification.textContent = message;
-    
-
-    notification.classList.add('visible', 'show');
-    
-
-    setTimeout(() => {
-        notification.classList.remove('show');
-        setTimeout(() => notification.classList.remove('visible'), 300);
-    }, 3000);
-}
