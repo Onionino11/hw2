@@ -23,10 +23,14 @@ class ProfileController extends Controller
         
         $ordini = DB::table('ordini')
             ->where('user_id', $userId)
-            ->orderBy('created_at', 'desc')
+            ->orderBy('created_at', 'desc')            
             ->limit(5)
             ->get();
             
-        return view('profilo', compact('user', 'ordini'));
+        $array = [
+            'user' => $user,
+            'ordini' => $ordini
+        ];
+        return view('profilo', $array);
     }
 }
