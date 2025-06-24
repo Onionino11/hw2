@@ -32,23 +32,4 @@ class ProdottiController extends Controller
         return json_encode(['results' => $prodotti]);
     }
 
-    // public function api($categoria, $numero = 10)
-    // {
-    //     $query = $categoria;
-    //     $number = $numero;
-    //     $apiKey = '9dde7ae366c84c1d943b6f3567ff7f2b';
-    //     $url = "https://api.spoonacular.com/recipes/complexSearch?query=$query&number=$number&apiKey=$apiKey";
-
-    //     $ch = curl_init();
-    //     curl_setopt($ch, CURLOPT_URL, $url);
-    //     curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-    //     $result = curl_exec($ch);
-    //     if (curl_errno($ch)) {
-    //         http_response_code(500);
-    //         curl_close($ch);
-    //         return json_encode(['error' => 'Errore nella richiesta: ' . curl_error($ch)], 500);
-    //     }
-    //     curl_close($ch);
-    //     return response($result, 200)->header('Content-Type', 'application/json');
-    // }
 }

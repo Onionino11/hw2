@@ -29,21 +29,37 @@ class CheckoutController extends Controller
     }
 
     public function processOrder(Request $request)
-    {
-
-        $user_id = $request->cookie('loggato');
+    {        $user_id = $request->cookie('loggato');
         if (!$user_id) {
             return redirect()->route('login');
-        }        try {
-            $validated = $request->validate([
-                'first_name' => 'required',
-                'last_name' => 'required',
-                'phone' => 'required',
-                'consegna' => 'required|in:ritiro,tavolo,domicilio',
-                'pagamento' => 'required|in:contanti,carta',
-            ]);
-        } catch (\Illuminate\Validation\ValidationException $e) {
-            return redirect()->back()->withErrors($e->validator->errors())->withInput();
+        }
+        
+        $errors = [];
+        
+        if (!$request->input('first_name')) {
+            $errors[] = 'Il nome è obbligatorio.';
+        }
+        
+        if (!$request->input('last_name')) {
+            $errors[] = 'Il cognome è obbligatorio.';
+        }
+        
+        if (!$request->input('phone')) {
+            $errors[] = 'Il telefono è obbligatorio.';
+        }
+        
+        $consegna = $request->input('consegna');
+        if (!$consegna || !in_array($consegna, ['ritiro', 'tavolo', 'domicilio'])) {
+            $errors[] = 'Seleziona un metodo di consegna valido.';
+        }
+        
+        $pagamento = $request->input('pagamento');
+        if (!$pagamento || !in_array($pagamento, ['contanti', 'carta'])) {
+            $errors[] = 'Seleziona un metodo di pagamento valido.';
+        }
+        
+        if (!empty($errors)) {
+            return redirect()->back()->withErrors($errors)->withInput();
         }
 
 
