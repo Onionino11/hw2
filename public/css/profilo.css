@@ -44,7 +44,6 @@
 
 .ordini-table {
     width: 100%;
-    border-collapse: collapse;
 }
 
 .ordini-table th, 
@@ -88,7 +87,6 @@
 
 .dettagli-prodotti {
     width: 100%;
-    border-collapse: collapse;
     margin-top: 10px;
     font-size: 0.9em;
 }

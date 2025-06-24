@@ -27,7 +27,8 @@ class SingupController extends Controller
 
         if (count($errors) > 0) {
             return redirect()->back()->withInput()->withErrors($errors);
-        }        $userId = DB::table('users')->insertGetId([
+        }        
+        $userId = DB::table('users')->insertGetId([
             'email' => $request->email,
             'password' => $request->password,
             'first_name' => $request->first_name,

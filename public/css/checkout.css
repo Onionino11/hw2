@@ -146,9 +146,6 @@
     position: relative;
 }
 
-.ordine-item:last-child {
-    border-bottom: none;
-}
 
 #totale-dinamico {
     font-weight: bold;
