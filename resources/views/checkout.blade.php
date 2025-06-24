@@ -6,9 +6,7 @@
 
 @section('scripts')
     <link rel="stylesheet" href="{{ asset('css/checkout.css') }}">
-    @if ($ordine_inviato)
-    <script src="{{ asset('js/riepilogo.js') }}" defer></script>
-    @else
+    @if (!$ordine_inviato)
     <script src="{{ asset('js/checkout.js') }}" defer></script>
     @endif
 @endsection
@@ -18,17 +16,10 @@
 @endsection
 
 @section('content')
-@if ($ordine_inviato)    
+@if ($ordine_inviato)
     <div class="ordine-success">
         <strong>Ordine inviato con successo!</strong>
         <p>Grazie per aver ordinato da Maluburger.</p>
-          <h3>Riepilogo ordine:</h3>
-        <div id="riepilogo-dinamico" class="checkout-summary"></div>
-        
-        <div class="ordine-totale">
-            Totale: <span id="totale-dinamico">0,00 €</span>
-        </div>
-        </div>
         
         <a href="{{ route('home') }}" class="btn-concludi-ordine">
             Torna alla Home
@@ -90,12 +81,11 @@
                             <ul id="checkout-summary-list"></ul>
                             <strong >Totale: <span id="checkout-summary-totale">0,00 €</span></strong>
                         </div>
-                    </div>
-                    <div class="form-group">
+                    </div>                    <div class="form-group">
                         <input type="submit" value="Invia ordine" class="submit">
                     </div>
                 </form>
-@endif            </div>
+@endif
 @endsection
 
 @section('cart')

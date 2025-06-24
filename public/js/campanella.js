@@ -1,6 +1,8 @@
 const navCampanella = document.querySelector('#nav-campanella');
-function displayletterbox() {
-    const element = document.querySelector('#letterbox');
+const letterbox = document.querySelector('#letterbox');
+function displayletterbox(event) {
+    event.stopPropagation();
+    element=letterbox;
     if (element.classList.contains('hidden')) {
         element.classList.remove('hidden');
     } else {
@@ -9,8 +11,15 @@ function displayletterbox() {
 }
 
 function hideletterbox() {
-    const element = document.querySelector('#letterbox');
+    element=letterbox;
+    if (!element.classList.contains('hidden')) 
     element.classList.add('hidden');
 }
 navCampanella.addEventListener('click', displayletterbox);
-navCampanella.addEventListener('blur',  hideletterbox);
+document.body.addEventListener('click',hideletterbox);
+
+letterbox.addEventListener('click', nonchiudere);
+
+function nonchiudere(event){
+    event.stopPropagation();
+};

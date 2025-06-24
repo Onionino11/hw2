@@ -42,6 +42,7 @@ for (const lingua of lingue) {
 }
 
 function cambiaLingua(event) {
+    event.StopPropagation();
     const linguaSelezionata = event.currentTarget.dataset.value; 
     let linguaAttiva = menu.querySelector('#'+linguaAttuale);
     linguaAttiva.classList.remove('linguaattuale');
