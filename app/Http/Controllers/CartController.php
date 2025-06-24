@@ -18,7 +18,8 @@ class CartController extends Controller
             if ($carrello) {
                 $items = DB::table('carrello_prodotti')
                     ->where('carrello_id', $carrello->id)
-                    ->select('prodotto_id', 'nome', 'descrizione', 'prezzo', 'quantita')                    ->get();
+                    ->select('prodotto_id', 'nome', 'descrizione', 'prezzo', 'quantita')                    
+                    ->get();
             }
             return json_encode(['success' => true, 'items' => $items]);
         } catch (\Exception $e) {
@@ -66,7 +67,8 @@ class CartController extends Controller
             $totale = DB::table('carrello_prodotti')
                 ->where('carrello_id', $carrello_id)
                 ->select(DB::raw('SUM(prezzo * quantita) as totale'))
-                ->first()->totale ?? 0.00;            DB::table('carrelli')->where('id', $carrello_id)->update(['totale' => $totale]);
+                ->first()->totale ?? 0.00;            
+            DB::table('carrelli')->where('id', $carrello_id)->update(['totale' => $totale]);
             
             return json_encode(['success' => true]);
         } catch (\Exception $e) {
@@ -81,7 +83,8 @@ class CartController extends Controller
         $id = intval($request->input('id'));
         $remove_all = $request->input('remove_all', false);
         
-        try {            $carrello = DB::table('carrelli')->where('user_id', $user_id)->first();
+        try {            
+            $carrello = DB::table('carrelli')->where('user_id', $user_id)->first();
             if (!$carrello) {
                 return json_encode(['success' => false, 'error' => 'Nessun carrello']);
             }
@@ -105,7 +108,8 @@ class CartController extends Controller
             $totale = DB::table('carrello_prodotti')
                 ->where('carrello_id', $carrello->id)
                 ->select(DB::raw('SUM(prezzo * quantita) as totale'))
-                ->first()->totale ?? 0.00;            DB::table('carrelli')->where('id', $carrello->id)->update(['totale' => $totale]);
+                ->first()->totale ?? 0.00;            
+                DB::table('carrelli')->where('id', $carrello->id)->update(['totale' => $totale]);
               return json_encode(['success' => true]);
         } catch (\Exception $e) {
             return json_encode(['success' => false, 'error' => 'DB error', 'msg' => $e->getMessage()]);

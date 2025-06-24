@@ -13,7 +13,6 @@ class AuthCookieController extends Controller
         $password = $request->input('password');
         $user = \DB::table('users')->where('email', $email)->first();
         if ($user && $user->password === $password) {
-
             return redirect('/')->withCookie(cookie('loggato', $user->id, 60));
         } elseif ($user) {
 
