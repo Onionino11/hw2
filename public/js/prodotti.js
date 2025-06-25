@@ -1,3 +1,22 @@
+function Successorlogin(data) {
+    if (data.success)  reloadCart();
+    else document.querySelector('#errori').textContent="Effettuare il login per aggiungere un prodotto al carrello";
+}
+
+function handleFormSubmit (event)
+{
+    event.preventDefault();
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+    
+    fetch(form.action, {
+        method: 'POST',
+        body: formData
+    })
+    .then(parseResponse)
+    .then(Successorlogin);
+};
+
 function createItem(elemento) {
     const panelItem = document.createElement('div');
     panelItem.classList.add('panel-item', 'boxed');
@@ -36,39 +55,44 @@ function createItem(elemento) {
     itemCategory.classList.add('item-category');
     itemCategory.href = '#';
     itemCategory.textContent = elemento.nome;
+    itemTitle.appendChild(itemCategory);
 
     const opzionali = document.createElement('div');
     opzionali.classList.add('opzionali');
-
-    if (elemento.bestseller == 1 || elemento.bestseller === "1") {
-        const bestseller = document.createElement('div');
-        bestseller.classList.add('bestseller');
-        bestseller.textContent = 'Best seller';
-        opzionali.appendChild(bestseller);
-    }
-    if (elemento.burger == 1 || elemento.burger === "1") {
-        const burgerIcon = document.createElement('img');
-        burgerIcon.classList.add('burger', 'icon');
-        burgerIcon.src = 'http://localhost/hw2/laravel_app/public/img/burger.svg';
-        opzionali.appendChild(burgerIcon);
-    }
-    if (elemento.chips == 1 || elemento.chips === "1") {
-        const chipsIcon = document.createElement('img');
-        chipsIcon.classList.add('chips', 'icon');
-        chipsIcon.src = 'http://localhost/hw2/laravel_app/public/img/chips.svg';
-        opzionali.appendChild(chipsIcon);
-    }
-    if (elemento.drink == 1 || elemento.drink === "1") {
-        const drinkIcon = document.createElement('img');
-        drinkIcon.classList.add('drink', 'icon');
-        drinkIcon.src = 'http://localhost/hw2/laravel_app/public/img/drink.svg';
-        opzionali.appendChild(drinkIcon);
-    }
-
-    itemTitle.appendChild(itemCategory);
+        if (elemento.bestseller == 1 || elemento.bestseller === "1") {
+            const bestseller = document.createElement('div');
+            bestseller.classList.add('bestseller');
+            bestseller.textContent = 'Best seller';
+            opzionali.appendChild(bestseller);
+        }
+        if (elemento.burger == 1 || elemento.burger === "1") {
+            const burgerIcon = document.createElement('img');
+            burgerIcon.classList.add('burger', 'icon');
+            burgerIcon.src = 'http://localhost/hw2/laravel_app/public/img/burger.svg';
+            opzionali.appendChild(burgerIcon);
+        }
+        if (elemento.chips == 1 || elemento.chips === "1") {
+            const chipsIcon = document.createElement('img');
+            chipsIcon.classList.add('chips', 'icon');
+            chipsIcon.src = 'http://localhost/hw2/laravel_app/public/img/chips.svg';
+            opzionali.appendChild(chipsIcon);
+        }
+        if (elemento.drink == 1 || elemento.drink === "1") {
+            const drinkIcon = document.createElement('img');
+            drinkIcon.classList.add('drink', 'icon');
+            drinkIcon.src = 'http://localhost/hw2/laravel_app/public/img/drink.svg';
+            opzionali.appendChild(drinkIcon);
+        }
     itemTitle.appendChild(opzionali);
+
     itemDescription.appendChild(itemTitle);
-    itemDescription.appendChild(document.createTextNode(elemento.descrizione && elemento.descrizione.trim() !== '' ? elemento.descrizione : 'Nessuna descrizione disponibile.'));
+    const descrizioneElement = document.createElement('p');
+    if (elemento.descrizione && elemento.descrizione.trim() !== '') {
+        descrizioneElement.textContent += elemento.descrizione;
+    } else {
+        descrizioneElement.textContent += 'Nessuna descrizione disponibile.';
+    }
+    itemDescription.appendChild(descrizioneElement);
     itemBody.appendChild(itemDescription);
 
     const itemButton = document.createElement('a');
@@ -88,96 +112,20 @@ function createItem(elemento) {
         prodottiText.classList.add('N-Prodotti');
         prodottiText.textContent = elemento.prezzo + '€';
         
-        const priceForm = document.createElement('form');
-        priceForm.method = 'POST';
-        priceForm.action = '/hw2/laravel_app/public/api/cart/add';
-        priceForm.classList.add('inline-form');
-        
-        const csrfField = document.createElement('input');
-        csrfField.type = 'hidden';
-        csrfField.name = '_token';
-        csrfField.value = document.querySelector('meta[name="csrf-token"]')?.getAttribute('content') || '';
-        priceForm.appendChild(csrfField);
-        
-
-        const idField = document.createElement('input');
-        idField.type = 'hidden';
-        idField.name = 'id';
-        idField.value = elemento.prodotto;
-        priceForm.appendChild(idField);
-        
-        const nomeField = document.createElement('input');
-        nomeField.type = 'hidden';
-        nomeField.name = 'nome';
-        nomeField.value = elemento.nome;
-        priceForm.appendChild(nomeField);
-        
-        const descField = document.createElement('input');
-        descField.type = 'hidden';
-        descField.name = 'descrizione';
-        descField.value = elemento.descrizione;
-        priceForm.appendChild(descField);
-        
-        const prezzoField = document.createElement('input');
-        prezzoField.type = 'hidden';
-        prezzoField.name = 'prezzo';
-        prezzoField.value = elemento.prezzo;
-        priceForm.appendChild(prezzoField);
-        
-        const submitBtn = document.createElement('button');
-        submitBtn.type = 'submit';
-        submitBtn.classList.add('text-button');
-        submitBtn.appendChild(prodottiText);
-        priceForm.appendChild(submitBtn);
-        
-        itemButton.appendChild(priceForm);
-        
-
-        const addForm = document.createElement('form');
-        addForm.method = 'POST';
-        addForm.action = '/hw2/laravel_app/public/api/cart/add';
-        addForm.classList.add('inline-form', 'ml-auto');
-        
-
-        addForm.appendChild(csrfField.cloneNode(true));
-        addForm.appendChild(idField.cloneNode(true));
-        addForm.appendChild(nomeField.cloneNode(true));
-        addForm.appendChild(descField.cloneNode(true));
-        addForm.appendChild(prezzoField.cloneNode(true));
-
-        const addBtn = document.createElement('button');
-        addBtn.type = 'submit';
-        addBtn.classList.add('square');
-        addBtn.textContent = '+';
-        addForm.appendChild(addBtn);
-        
-        const handleFormSubmit = function(e) {
-            e.preventDefault();
-            const form = e.currentTarget;
-            const formData = new FormData(form);
-            
-            fetch(form.action, {
-                method: 'POST',
-                body: formData
-            })
-            .then(function parseResponse(response) {
-                return response.json();
-            })
-            .then(function handleData(data) {
-                if (data.success) {
-                    if (typeof reloadCart === 'function') {
-                        reloadCart();
-                    }
-                } else {
-                    document.querySelector('#errori').textContent="Effettuare il login per aggiungere un prodotto al carrello";
-                }
-            });
-        };
-        
-        priceForm.addEventListener('submit', handleFormSubmit);
-        addForm.addEventListener('submit', handleFormSubmit);
-        
-        itemButton.appendChild(addForm);
+        const priceButton = document.createElement('button');
+        priceButton.classList.add('text-button');
+        priceButton.dataset.prodottoId = elemento.prodotto; 
+        priceButton.appendChild(prodottiText);
+        priceButton.addEventListener('click', handleAddToCart); 
+    
+        const addButton = document.createElement('button');
+        addButton.classList.add('square', 'ml-auto');
+        addButton.dataset.prodottoId = elemento.prodotto; 
+        addButton.textContent = '+';
+        addButton.addEventListener('click', handleAddToCart);
+    
+        itemButton.appendChild(priceButton);
+        itemButton.appendChild(addButton);
     }
 
     itemBody.appendChild(itemButton);
@@ -198,60 +146,26 @@ function createItem(elemento) {
     return panelItem;
 }
 
-function getNumberof(product){
-    let number = 0;
-    const panelItems = document.querySelectorAll('#panel-body .panel-item');
-    for (const item of panelItems) {
-        if (item.dataset.nome === product) {
-            number = item.dataset.nProdotti;
-            break; 
-        }
-    }
-    return number;
+function handleAddToCart(event) {
+    event.preventDefault();
+    
+    const prodottoId = event.target.dataset.prodottoId; 
+    const csrfToken = document.querySelector('meta[name="csrf-token"]')?.getAttribute('content');
+    
+    fetch('/hw2/laravel_app/public/api/cart/add', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRF-TOKEN': csrfToken
+        },
+        body: JSON.stringify({
+            id: prodottoId
+        })
+    })
+    .then(parseResponse)
+    .then(handleData);
 }
 
-function createFried(){
-    number = getNumberof('PER INIZIARE');
-    createCibo('snac', number);
-}
-function createHamburger(){ 
-    number = getNumberof('MALU BURGER (SOLO PANINO)');
-    createCibo('hamburger', number);
-}
-function createPlate(){
-    number = getNumberof("MALU PROMO MENU'");
-    createCibo('pasta', number);
-}
-function createSalad(){
-    number = getNumberof('MALU LIGHT');
-    createCibo('salad', number);
-}
-function createDrink(){
-    number = getNumberof('DA BERE');
-    createCibo('drink', number);
-}
-function createDessert(){
-    number = getNumberof('DOLCI');
-    createCibo('dessert',number);
-}
-
-function createCibo(query,number) {
-    hideItemsCategoria(); 
-    fetch('http://localhost/hw2/laravel_app/public/api/' + encodeURIComponent(query) + '/' + number)
-        .then(onSuccess, onError)
-        .then(onJsonItems);
-}
-
-function onSuccess(response) {
-    if (!response.ok) {  
-        throw new Error('Errore nella risposta: ' + response.status);
-    }
-    return response.json();
-}
-
-function onError(error) {
-    console.error('Errore nella richiesta:', error);
-}
 
 function onJsonItems(data) {
     const Results = data.results || [];
@@ -284,11 +198,3 @@ function onJsonItems(data) {
     }
 }
 
-function hideItemsCategoria() {
-    const panelItems = document.querySelectorAll('#panel-body .panel-item');
-    for (const item of panelItems) {
-        if (item.dataset.prodotto == 0) {
-            item.classList.add('hidden');
-        }
-    }
-}

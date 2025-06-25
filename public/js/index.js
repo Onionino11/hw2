@@ -18,4 +18,3 @@ function handleError() {
 fetch('http://localhost/hw2/laravel_app/public/categorie')
     .then(handleResponse)
     .then(processData)
-    .catch(handleError);

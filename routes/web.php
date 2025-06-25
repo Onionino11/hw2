@@ -54,7 +54,7 @@ Route::get('/DOLCI', function() {
 
 
 Route::get('/api/cart', [CartController::class, 'api']);
-Route::match(['get', 'post'], '/api/cart/add', [CartController::class, 'add']);
+Route::post( '/api/cart/add', [CartController::class, 'add']);
 Route::match(['get', 'post'], '/api/cart/remove', [CartController::class, 'remove']);
 
 

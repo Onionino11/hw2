@@ -6,7 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class CartController extends Controller
-{    public function api(Request $request)
+{    
+    public function api(Request $request)
     {
         $user_id = $request->cookie('loggato');
         if (!$user_id) {
@@ -26,7 +27,8 @@ class CartController extends Controller
             return json_encode(['success' => false, 'error' => 'DB error', 'msg' => $e->getMessage()]);
         }
     }
-      public function add(Request $request)
+
+    public function add(Request $request)
     {
         $user_id = $request->cookie('loggato');
         if (!$user_id) {
@@ -34,16 +36,24 @@ class CartController extends Controller
         }
         
         $id = intval($request->input('id'));
-        $nome = $request->input('nome', '');
-        $descrizione = $request->input('descrizione', '');
-        $prezzo = floatval($request->input('prezzo', 0.0));        
+        
         try {
+            $prodotto_info = DB::table('prodotti')->where('id', $id)->first();
+            if (!$prodotto_info) {
+                return json_encode(['success' => false, 'error' => 'Prodotto non trovato']);
+            }
+            
+            $nome = $prodotto_info->nome;
+            $descrizione = $prodotto_info->descrizione ?? '';
+            $prezzo = floatval($prodotto_info->prezzo);
+            
             $carrello = DB::table('carrelli')->where('user_id', $user_id)->first();
             if (!$carrello) {
                 $carrello_id = DB::table('carrelli')->insertGetId(['user_id' => $user_id, 'totale' => 0.00]);
             } else {
                 $carrello_id = $carrello->id;
             }
+            
             $prodotto = DB::table('carrello_prodotti')
                 ->where('carrello_id', $carrello_id)
                 ->where('prodotto_id', $id)
@@ -74,7 +84,9 @@ class CartController extends Controller
         } catch (\Exception $e) {
             return json_encode(['success' => false, 'error' => 'DB error', 'msg' => $e->getMessage()]);
         }
-    }      public function remove(Request $request)
+    }
+          
+    public function remove(Request $request)
     {
         $user_id = $request->cookie('loggato');
         if (!$user_id) {
