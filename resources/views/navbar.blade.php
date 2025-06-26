@@ -27,8 +27,8 @@
                 <a href="{{ route('profilo') }}" class="nav-username-link">
                     <span class="nav-username">
                         <img class="icon user-profile-icon" src="{{ asset('img/profilo.svg') }}"> 
-                        {{ $user->first_name }} {{ $user->last_name }}
                     </span>
+                    {{ $user->first_name }} {{ $user->last_name }}
                 </a>
             @endif
             <form action="{{ url('logout-cookie') }}" method="get" class="form" id="nav-form">

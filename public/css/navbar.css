@@ -33,7 +33,7 @@ nav {
 
 .nav-username-link {
     text-decoration: none;
-    color: inherit;
+    color: black;
     display: flex;
     align-items: center;
 }
@@ -44,7 +44,7 @@ nav {
 }
 
 .user-profile-icon {
-    vertical-align: middle;
+
     margin-right: 3px;
 }
 

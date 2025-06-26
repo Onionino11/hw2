@@ -1,88 +1,9 @@
 fetchOrdini();
 
 function fetchOrdini() {
-    const container = document.getElementById('ordini-content');
-    
-    if (!container) {
-        console.error('Contenitore ordini non trovato');
-        return;
-    }
-    
     fetch(`/hw2/laravel_app/public/api/ordini`)
-        .then(handleResponse)
-        .then(processOrdiniData)
-        .catch(handleFetchError);
-}
-
-function handleResponse(response) {
-    if (!response.ok) {
-        if (response.status === 500) {
-            throw new Error('Errore interno del server. Riprova più tardi.');
-        } else if (response.status === 404) {
-            throw new Error('Risorsa non trovata.');
-        } else if (response.status === 401) {
-            throw new Error('Accesso non autorizzato. Effettua il login.');
-        } else {
-            throw new Error(`Errore nella richiesta: ${response.status}`);
-        }
-    }
-    return response.json();
-}
-
-function processOrdiniData(data) {
-    const container = document.getElementById('ordini-content');
-    
-    if (!container) {
-        console.error('Contenitore ordini non trovato');
-        return;
-    }
-    
-    if (!data || !data.ordini) {
-        handleFetchError(new Error('Dati non validi ricevuti dal server'));
-        return;
-    }
-    
-    renderOrdiniData(container, data.ordini);
-}
-
-function handleFetchError(error) {
-    console.error('Errore nel caricamento degli ordini:', error);
-    const container = document.getElementById('ordini-content');
-    
-    if (!container) {
-        return;
-    }
-    
-    renderErrorState(container, error);
-}
-
-function renderErrorState(container, error) {
-    clearContainer(container);
-    
-    const errorEl = document.createElement('div');
-    errorEl.classList.add('error-state');
-    
-    const errorIcon = document.createElement('div');
-    errorIcon.classList.add('error-icon');
-    errorIcon.textContent = '!';
-    
-    const errorTitle = document.createElement('h3');
-    errorTitle.textContent = 'Errore nel caricamento degli ordini';
-    
-    const errorMessage = document.createElement('p');
-    errorMessage.textContent = error.message || 'Si è verificato un errore nella comunicazione con il server.';
-    
-    const retryButton = document.createElement('button');
-    retryButton.classList.add('btn-retry');
-    retryButton.textContent = 'Riprova';
-    retryButton.addEventListener('click', fetchOrdini);
-    
-    errorEl.appendChild(errorIcon);
-    errorEl.appendChild(errorTitle);
-    errorEl.appendChild(errorMessage);
-    errorEl.appendChild(retryButton);
-    
-    container.appendChild(errorEl);
+        .then(onSuccess)
+        .then(renderOrdiniData);
 }
 
 function clearContainer(container) {
@@ -91,7 +12,10 @@ function clearContainer(container) {
     }
 }
 
-function renderOrdiniData(container, ordini) {
+function renderOrdiniData(data) {
+    const container = document.getElementById('ordini-content');
+    console.log(data);
+    let ordini = data.ordini;
     clearContainer(container);
     
     if (!ordini || ordini.length === 0) {
@@ -103,8 +27,11 @@ function renderOrdiniData(container, ordini) {
     
     const ordiniList = document.createElement('div');
     ordiniList.classList.add('ordini-list');
-    
+
+    let i= 0;
     for (const ordine of ordini) {
+        i++;
+        if (i > 10) break; 
         const ordineCard = createOrdineCard(ordine);
         ordiniList.appendChild(ordineCard);
     }

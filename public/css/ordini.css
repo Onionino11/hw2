@@ -48,6 +48,7 @@
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
     overflow: hidden;
     padding: 10px;
+    margin: 10px 0px;
 }
 
 .ordine-card:hover {
@@ -173,7 +174,6 @@
     justify-content: center;
     padding: 15px;
     border-top: 1px solid #f0f0f0;
-    background-color: #fafafa;
 }
 
 .btn-details {
