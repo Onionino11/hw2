@@ -107,21 +107,6 @@ section {
     text-decoration: underline;
 }
 
-.square {
-    height: 25px;
-    width: 25px;
-    padding: 5px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: white;
-    font-size: 30px;
-    background-color: rgb(238, 127, 1);
-    border-radius: 20%;
-    margin-left: 10px;
-    cursor: pointer;
-}
-
 .square-svg {
     height: 60%;
 }
