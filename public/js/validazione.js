@@ -8,6 +8,7 @@ function validazione(event) {
     for (let i = 0; i < form.elements.length; i++) {
         const field = form.elements[i];
         if (field.type === 'submit' || field.type === 'hidden' || field.type === 'button') continue;
+        if (field.classList.contains('opzionale')) continue;
         if (field.name === 'password') {
             password = field.value;
             passwordField = field;

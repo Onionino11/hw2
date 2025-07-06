@@ -96,7 +96,8 @@ function parseResponse(response) {
 }
 
 function handleData(data) {
-    if (data.success) reloadCart();
+    if (data.success)  reloadCart();
+    else document.querySelector('#errori').textContent="Effettuare il login per aggiungere un prodotto al carrello";
 }
 
 

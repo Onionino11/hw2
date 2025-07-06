@@ -37,7 +37,7 @@
                     <div class="form-group">
                         <label for="note" class="control-label">Note per l'ordine</label>
                         <div class="controls">
-                            <textarea name="note" class="form-control" placeholder="Eventuali note da allegare all'ordine."></textarea>
+                            <textarea name="note" class="form-control opzionale" placeholder="Eventuali note da allegare all'ordine."></textarea>
                         </div>
                     </div>
 
@@ -81,7 +81,8 @@
                             <ul id="checkout-summary-list"></ul>
                             <strong >Totale: <span id="checkout-summary-totale">0,00 €</span></strong>
                         </div>
-                    </div>                    <div class="form-group">
+                    </div>                    
+                    <div class="form-group">
                         <input type="submit" value="Invia ordine" class="submit">
                     </div>
                 </form>

@@ -20,17 +20,7 @@ class ProfileController extends Controller
         if (!$user) {
             return redirect('singup');
         }
-        
-        $ordini = DB::table('ordini')
-            ->where('user_id', $userId)
-            ->orderBy('created_at', 'desc')            
-            ->limit(5)
-            ->get();
-            
-        $array = [
-            'user' => $user,
-            'ordini' => $ordini
-        ];
-        return view('profilo', $array);
+         
+        return view('profilo')->with('user', $user);
     }
 }

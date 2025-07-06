@@ -1,7 +1,4 @@
-function Successorlogin(data) {
-    if (data.success)  reloadCart();
-    else document.querySelector('#errori').textContent="Effettuare il login per aggiungere un prodotto al carrello";
-}
+
 
 function handleFormSubmit (event)
 {
@@ -119,7 +116,7 @@ function createItem(elemento) {
         priceButton.addEventListener('click', handleAddToCart); 
     
         const addButton = document.createElement('button');
-        addButton.classList.add('square', 'ml-auto');
+        addButton.classList.add('square', 'cart-item-btn-add');
         addButton.dataset.prodottoId = elemento.prodotto; 
         addButton.textContent = '+';
         addButton.addEventListener('click', handleAddToCart);
