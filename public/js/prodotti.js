@@ -102,7 +102,7 @@ function createItem(elemento) {
         prodottiText.textContent = elemento.prodotti + ' prodotti';
         itemButton.appendChild(prodottiText);
         const square = document.createElement('div');
-        square.classList.add('square');
+        square.classList.add('cart-item-btn-add');
         square.textContent = '>';
         itemButton.appendChild(square);
     } else {

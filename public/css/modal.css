@@ -4,7 +4,7 @@
     flex-grow: 1;
     justify-content: center;
     align-items: center;
-    position: fixed;
+    position: absolute;
     padding: 0;
     top: 0;
     left: 0;
